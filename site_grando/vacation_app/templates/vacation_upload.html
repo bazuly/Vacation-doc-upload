@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Форма отпарвки заявления на отпуск  </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ vac_form.as_p }}
+        <label for="{{ vac_form.vacation_files.id_for_label }}"> Фото/Скан заявления: </label>
+        <input type="file" name="vacation_file" multiple required>
+        <button type="submit">Отправить заявление на согласование</button>
+    </form>
+{% endblock %}
