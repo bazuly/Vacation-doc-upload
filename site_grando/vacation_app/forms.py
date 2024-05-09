@@ -1,12 +1,12 @@
-from django import forms 
+from django import forms
 from .models import VacationModel
 
 
 class VacationForm(forms.ModelForm):
     class Meta:
         model = VacationModel
-        fields = ['name', 'vacation_date_start', 'vacation_date_end']
-        
+        fields = ['name', 'vacation_date_start', 'vacation_date_end']  # 'status_confirm'
+
         labels = {
             'name': 'ФИО',
             'vacation_date_start': 'Дата начала отпуска',

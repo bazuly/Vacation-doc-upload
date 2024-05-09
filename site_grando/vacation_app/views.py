@@ -4,10 +4,30 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import VacationModel
 from django.core.mail import EmailMessage
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def vacation_upload_success(request):
     return render(request, 'vacation_upload_success.html')
+
+
+def list_vac(request):
+    vac_data = VacationModel.objects.all()
+
+    item_per_page = 7
+    paginator = Paginator(vac_data, item_per_page)
+    page = request.GET.get('page')
+    try:
+        vac_data = paginator.page(page)
+    except PageNotAnInteger:
+        vac_data = paginator.page(1)
+    except EmptyPage:
+        vac_data = paginator.page(paginator.num_pages)
+    context = {
+        'vac_data': vac_data
+    }
+
+    return render(request, 'list_vacation.html', context)
 
 
 def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file_path):
@@ -28,32 +48,30 @@ def vacation_upload(request):
         )
         if vac_form.is_valid():
             vac_data = VacationModel(
-                name = vac_form.cleaned_data['name'],
-                vacation_date_start = vac_form.cleaned_data['vacation_date_start'],
-                vacation_date_end = vac_form.cleaned_data['vacation_date_end'],
-                vacation_file = request.FILES.get('vacation_file')
+                name=vac_form.cleaned_data['name'],
+                vacation_date_start=vac_form.cleaned_data['vacation_date_start'],
+                vacation_date_end=vac_form.cleaned_data['vacation_date_end'],
+                vacation_file=request.FILES.get('vacation_file')
             )
-            
+
             vac_data.save()
             print('Vacation data saved successfully')
-            
+
             vacation_file_path = vac_data.vacation_file.path
-            
+
             send_email_to_hr(
                 vac_data.name,
                 vac_data.vacation_date_start,
                 vac_data.vacation_date_end,
                 vacation_file_path
             )
-            
+
             return HttpResponseRedirect(reverse('vacation_app:vacation_upload_success'))
 
         else:
-            return print('Vacatioon_data_upload form is not valid', vac_form.errors)
-    
+            return print('Vacation_data_upload form is not valid', vac_form.errors)
+
     else:
         vac_form = VacationForm(prefix='vac')
-    
+
     return render(request, 'vacation_upload.html', {'vac_form': vac_form})
-
-
