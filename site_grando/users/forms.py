@@ -8,6 +8,10 @@ class LoginUserForm(AuthenticationForm):
     class Meta:
         model = get_user_model()
         fields = ['username', 'password']
+        labels = {
+            'username': 'Имя пользователя',
+            'password': 'Пароль'
+        }
 
 
 class RegisterUserForm(UserCreationForm):
@@ -26,7 +30,7 @@ class RegisterUserForm(UserCreationForm):
         labels = {
             'email': 'E-mail',
             'first_name': 'Имя',
-            'last_name': 'Фамилия'
+            'last_name': 'Фамилия',
         }
 
         widgets = {
