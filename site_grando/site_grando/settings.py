@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'vacation_app',
     'users',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -100,5 +100,5 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
-LOGIN_REDIRECT_URL = '/vacation_upload/'
+LOGIN_REDIRECT_URL = '/vacation/vacation_upload/'
 DEFAULT_USER_IMAGE = '/'

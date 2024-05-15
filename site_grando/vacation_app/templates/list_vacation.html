@@ -14,9 +14,11 @@
     <li> ФИО: {{ vac.name }}</li>
     <li> Статус: {{ vac.status_confirm }}</li>
     <br>
+    {% if user.is_authenticated %}
     <td>
         <a href="{% url 'vacation_app:edit_vacation_status' vac.id %}">Обновить статус</a>
      </td>
+    {% endif %} 
     {% endfor %}
 </ul>
 

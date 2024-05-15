@@ -7,8 +7,8 @@ from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
-
 """ Success redirections """
+
 
 def vacation_upload_success(request):
     return render(request, 'vacation_upload_success.html')
@@ -19,6 +19,7 @@ def vacation_edit_success(request):
 
 
 """ List all vacations requests """
+
 
 def list_vac(request):
     vac_data = VacationModel.objects.all()
@@ -40,7 +41,9 @@ def list_vac(request):
 
 
 """ Edit status: In process, Approved, Declined """
-# @login_required
+
+
+@login_required
 def edit_vacation_status(request, vacation_id):
     vacation = get_object_or_404(VacationModel, pk=vacation_id)
     if request.method == 'POST':
@@ -50,9 +53,10 @@ def edit_vacation_status(request, vacation_id):
         return HttpResponseRedirect(reverse('vacation_app:vacation_edit_success'))
     else:
         return render(request, 'edit_vacation_status.html', {'vacation': vacation})
-    
+
 
 """ Email sending """
+
 
 def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file_path):
     to_email = ['serejka50@gmail.com']
@@ -61,9 +65,10 @@ def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file
     email = EmailMessage(subject, message, to=to_email)
     email.attach_file(vacation_file_path)
     email.send()
-    
+
 
 """ Upload vacation data """
+
 
 def vacation_upload(request):
     if request.method == 'POST':
@@ -102,4 +107,3 @@ def vacation_upload(request):
         vac_form = VacationForm(prefix='vac')
 
     return render(request, 'vacation_upload.html', {'vac_form': vac_form})
-
