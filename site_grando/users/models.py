@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    """ Модель для профиля """
+        
     ACCESS_USER_CHOICES = [
         ('Гость', 'Гость'),
         ('Пользователь', 'Пользователь'),

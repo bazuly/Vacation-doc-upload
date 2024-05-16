@@ -5,7 +5,8 @@ from django.urls import reverse
 from .models import VacationModel
 from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+
 
 """ Success redirections """
 
@@ -44,6 +45,7 @@ def list_vac(request):
 
 
 @login_required
+@permission_required('vacation_app.can_edit_vacation_status')
 def edit_vacation_status(request, vacation_id):
     vacation = get_object_or_404(VacationModel, pk=vacation_id)
     if request.method == 'POST':
