@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import NewsModel
 from .forms import NewsForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 """ LIST|ADD NEWS """
@@ -12,7 +13,7 @@ def news_list(request):
     
     items_per_page = 5
     paginator = Paginator(news_data, items_per_page)
-    page = request.GET('page')
+    page = request.GET.get('page')
     try:
         news_data = paginator.page(page)
     except PageNotAnInteger:
@@ -27,22 +28,30 @@ def news_list(request):
     return render(request, 'news_list.html', context)
 
 
+@login_required
+@permission_required
 def news_details(request, news_id):
     news_item = get_object_or_404(NewsModel, pk=news_id)
     return render(request, 'news_details.html', {'news_item': news_item})
 
 
+""" CREATE|EDIT NEWS """
+
+@login_required
+@permission_required('news_app.can_add_news_model')
 def news_create(request):
     if request.method == 'POST':
         news_form = NewsForm(request.POST)
         if news_form.is_valid():
             news_form.save()
-            return redirect('news_list')
+            return redirect('news_app:news_list')
     else:
         news_form = NewsForm()
-    return render(request, 'news_form.html', {'news_form': news_form})
+    return render(request, 'news_create.html', {'news_form': news_form})
 
 
+@login_required
+@permission_required('news_app.can_change_news_model')
 def news_edit(request, news_id):
     news_item = get_object_or_404(NewsModel, pk=news_id)
     if request.method == 'POST':

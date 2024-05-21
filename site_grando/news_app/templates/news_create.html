@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Создание новой новости{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Создание новой новости</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Заголовок:</label>
+            {{ news_form.title }}
+        </div>
+        <div class="form-group">
+            <label for="id_content">Содержание:</label>
+            {{ news_form.content }}
+        </div>
+        <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+</div>
+{% endblock %}

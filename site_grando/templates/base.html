@@ -6,50 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Корпоративный портал Грандо Логистик{% endblock %}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #444;
-            color: #fff;
-            padding: 10px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline-block;
-            margin-right: 10px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            overflow: hidden;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/news_style.css' %}">
 </head>
 <body>
     <header>
@@ -58,11 +16,11 @@
     <nav>
         <ul>
             <li><a href="#">Главная</a></li>
-            <li><a href="#">О нас</a></li>
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+            <li><a href="{% url 'news_app:news_list' %}">Новости</a></li>
             <li><a href="{% url 'vacation_app:vacation_upload' %}">Заявление на отпуск</a></li>
             <li><a href="{% url 'vacation_app:vacation_list' %}">Список заявлений</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'users:logout' %}">Выйти</a></li>
             {% else %}
             <li><a href="{% url 'users:login' %}">Войти</a></li>
             <li><a href="{% url 'users:register' %}">Регистрация</a></li>

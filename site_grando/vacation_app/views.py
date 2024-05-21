@@ -7,7 +7,6 @@ from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, permission_required
 
-
 """ Success redirections """
 
 
@@ -61,7 +60,7 @@ def edit_vacation_status(request, vacation_id):
 
 
 def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file_path):
-    to_email = ['sorokovoy.v@grando.pro']
+    to_email = ['serejka50@gmail.com']
     subject = f'Заявление на отпуск от {name}'
     message = f'Прошу предоставить отпуск в период с {vacation_date_start} по {vacation_date_end}'
     email = EmailMessage(subject, message, to=to_email)
