@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'vacation_app',
     'users',
     'news_app',
-
+    'about_app'
 ]
 
 MIDDLEWARE = [

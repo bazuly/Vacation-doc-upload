@@ -11,13 +11,14 @@
 <h1>Список заявлений сотудников</h1>
 <ul>
     {% for vac in vac_data %}
-    <li> ФИО: {{ vac.name }}</li>
-    <li> Статус: {{ vac.status_confirm }}</li>
-    <br>
     {% if user.is_authenticated and perms.vacation_app.can_edit_vacation_status %}
     <td>
         <a href="{% url 'vacation_app:edit_vacation_status' vac.id %}">Обновить статус</a>
      </td>
+    <li> ФИО: {{ vac.name }}</li>
+    <li> Статус: {{ vac.status_confirm }}</li>
+    <br>
+    
     {% endif %} 
     {% endfor %}
 </ul>

@@ -7,6 +7,7 @@ from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, permission_required
 
+
 """ Success redirections """
 
 

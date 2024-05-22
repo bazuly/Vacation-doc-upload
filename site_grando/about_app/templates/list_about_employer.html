@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Информация о сотрудниках</h1>
+    <div class="employee-list">
+        {% for employee in data %}
+            <div class="employee-card">
+                {% if employee.photo %}
+                    <img src="{{ employee.photo.url }}" alt="{{ employee.name }}" class="employee-photo">
+                {% else %}
+                    <img src="{% static 'images/default-image.png' %}" alt="No photo" class="employee-photo">
+                {% endif %}
+                <h2>{{ employee.name }}</h2>
+                <p>{{ employee.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
