@@ -28,14 +28,8 @@ def news_list(request):
     return render(request, 'news_list.html', context)
 
 
-@login_required
-@permission_required
-def news_details(request, news_id):
-    news_item = get_object_or_404(NewsModel, pk=news_id)
-    return render(request, 'news_details.html', {'news_item': news_item})
-
-
 """ CREATE|EDIT NEWS """
+
 
 @login_required
 @permission_required('news_app.can_add_news_model')
@@ -58,7 +52,11 @@ def news_edit(request, news_id):
         news_form = NewsForm(request.POST, instance=news_item)
         if news_form.is_valid():
             news_form.save()
-            return redirect('news_list')
+            return redirect('news_app:news_list')
     else:
         news_form = NewsForm(instance=news_item)
-    return render(request, 'news_form.html', {'news_form': news_form})
+    context = {
+        'news_form': news_form,
+        'news_item': news_item
+    }
+    return render(request, 'news_edit.html', context)

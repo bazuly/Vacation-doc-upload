@@ -23,7 +23,7 @@
                 <div class="news-content">{{ news_item.content }}</div>
                 <div class="news-date">Дата публикации: {{ news_item.published_at }}</div>
                 {% if user.is_authenticated and perms.news_app.can_change_news_model %}
-                <a href="{% url 'news_app:news_edit' news_item.id %}" class="edit-link">Редактировать новость</a>
+                <a href="{% url 'news_app:news_edit' news_item.id %}" class="edit-link">Редактировать</a>
                 {% endif %}
             </li>
             {% endfor %}
