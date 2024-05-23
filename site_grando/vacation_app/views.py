@@ -23,7 +23,7 @@ def vacation_edit_success(request):
 
 
 def list_vac(request):
-    vac_data = VacationModel.objects.all()
+    vac_data = VacationModel.objects.all().order_by('-uploaded_at')
 
     item_per_page = 7
     paginator = Paginator(vac_data, item_per_page)
@@ -85,7 +85,8 @@ def vacation_upload(request):
                 vacation_date_start=vac_form.cleaned_data['vacation_date_start'],
                 vacation_date_end=vac_form.cleaned_data['vacation_date_end'],
                 vacation_file=request.FILES.get('vacation_file'),
-                status_confirm=vac_form.cleaned_data['status_confirm']
+                status_confirm=vac_form.cleaned_data['status_confirm'],
+                job=vac_form.cleaned_data['job']
             )
 
             vac_data.save()
@@ -103,9 +104,19 @@ def vacation_upload(request):
             return HttpResponseRedirect(reverse('vacation_app:vacation_upload_success'))
 
         else:
-            return print('Vacation_data_upload form is not valid', vac_form.errors)
+            print('Vacation_data_upload form is not valid', vac_form.errors)
+            return render(request, 'vacation_upload.html', {'vac_form': vac_form})
 
     else:
         vac_form = VacationForm(prefix='vac')
 
     return render(request, 'vacation_upload.html', {'vac_form': vac_form})
+
+
+"SEARCH VAC"
+
+
+def search_vac(request):
+    pass
+
+
