@@ -3,6 +3,7 @@ from django.db import models
 
 class VacationModel(models.Model):
     JOB_CHOICES = [
+        ('Не назначен', 'Не назнчаен'),
         ('Job example', 'Job example'),
         ('Job example_2', 'Job example_2')
     ]
