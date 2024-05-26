@@ -13,3 +13,8 @@ class VacationForm(forms.ModelForm):
             'vacation_date_end': 'Дата окончания отпуска',
             'job': 'Должность'
         }
+    
+    def __init__(self, *args, **kwargs):
+        super(VacationForm, self).__init__(*args, **kwargs)
+        self.fields['status_confirm'].widget = forms.HiddenInput()
+        self.fields['status_confirm'].initial = 'На согласовании'

@@ -6,6 +6,7 @@ from .models import VacationModel
 from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, permission_required
+from django.db.models import Q
 
 
 """ Success redirections """
@@ -71,26 +72,14 @@ def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file
 
 """ Upload vacation data """
 
-
 def vacation_upload(request):
     if request.method == 'POST':
-        vac_form = VacationForm(
-            request.POST,
-            request.FILES,
-            prefix='vac'
-        )
+        vac_form = VacationForm(request.POST, request.FILES, prefix='vac')
         if vac_form.is_valid():
-            vac_data = VacationModel(
-                name=vac_form.cleaned_data['name'],
-                vacation_date_start=vac_form.cleaned_data['vacation_date_start'],
-                vacation_date_end=vac_form.cleaned_data['vacation_date_end'],
-                vacation_file=request.FILES.get('vacation_file'),
-                status_confirm=vac_form.cleaned_data['status_confirm'],
-                job=vac_form.cleaned_data['job']
-            )
-
+            vac_data = vac_form.save(commit=False)
+            vac_data.vacation_file = request.FILES.get('vacation_file')
+            vac_data.status_confirm = 'На согласовании'
             vac_data.save()
-            print('Vacation data saved successfully')
 
             vacation_file_path = vac_data.vacation_file.path
 
@@ -102,21 +91,33 @@ def vacation_upload(request):
             )
 
             return HttpResponseRedirect(reverse('vacation_app:vacation_upload_success'))
-
         else:
             print('Vacation_data_upload form is not valid', vac_form.errors)
             return render(request, 'vacation_upload.html', {'vac_form': vac_form})
-
     else:
         vac_form = VacationForm(prefix='vac')
-
     return render(request, 'vacation_upload.html', {'vac_form': vac_form})
 
 
-"SEARCH VAC"
+"""SEARCH VACATION DATA"""
 
 
-def search_vac(request):
-    pass
+def search_vac_data(request):
+    query = request.GET.get('q')
+    query_lower = query.lower()
+    vac_data = VacationModel.objects.all()
 
+    if query:
+        vac_data = VacationModel.objects.filter(
+            Q(name__icontains=query_lower)
+        )
+    else:
+        query = vac_data
+
+    context = {
+        'vac_data': vac_data,
+        'query': query
+    }
+
+    return render(request, 'list_vacation.html', context)
 
