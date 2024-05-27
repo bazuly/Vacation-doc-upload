@@ -103,7 +103,7 @@ def vacation_upload(request):
 
 
 def search_vac_data(request):
-    query = request.GET.get('q')
+    query = request.GET.get('q').strip()
     query_lower = query.lower()
     vac_data = VacationModel.objects.all()
 

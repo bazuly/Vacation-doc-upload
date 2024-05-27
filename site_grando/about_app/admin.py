@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import AboutEmployeeModel
+from .models import AboutEmployeeModel, JobModel, ReferenceBookModel
 
-admin.register(AboutEmployeeModel)
+admin.site.register(AboutEmployeeModel)
+admin.site.register(JobModel)
+admin.site.register(ReferenceBookModel)

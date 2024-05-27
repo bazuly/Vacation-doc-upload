@@ -12,7 +12,7 @@
         <ul>
             {% for vac in vac_data %}
                 <li>
-                    ФИО: {{ vac.name }}
+                    ФИО: {{ vac.name | title }}
                     <br> Должность: {{ vac.job }}
                     <br> Статус: {{ vac.status_confirm }}
                     {% if user.is_authenticated and perms.vacation_app.can_edit_vacation_status %}

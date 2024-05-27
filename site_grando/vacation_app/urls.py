@@ -11,5 +11,5 @@ urlpatterns = [
     path('vacation_list/', list_vac, name='vacation_list'),
     path('edit_vacation_status/<int:vacation_id>/', edit_vacation_status,
          name='edit_vacation_status'),
-    path('vacation_seacth', search_vac_data, name='search_vac_data')
+    path('vacation_search', search_vac_data, name='search_vac_data')
 ]
