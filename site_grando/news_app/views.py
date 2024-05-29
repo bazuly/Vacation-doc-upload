@@ -41,7 +41,7 @@ def news_create(request):
             return redirect('news_app:news_list')
     else:
         news_form = NewsForm()
-    return render(request, 'news_create.html', {'news_form': news_form})
+    return render(request, 'news_create_norm.html', {'news_form': news_form})
 
 
 @login_required

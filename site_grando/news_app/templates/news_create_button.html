@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>CSS-анимация магазинчика — CSS-анимации — Дока</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      box-sizing: border-box;
+      background-color: #f0f0f0;
+    }
+
+    .store-container {
+      line-height: 0;
+      margin: 50px auto;
+      width: 50%;
+      position: relative;
+    }
+
+    .stroke {
+      stroke: #0170bb;
+      stroke-width: 5;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10;
+    }
+
+    .round-end {
+      stroke-linecap: round;
+    }
+
+    #store {
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    .border-animation {
+      background-color: white;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .border-animation::after {
+      content: "";
+      background: linear-gradient(45deg, #ccc 48.9%, #0170bb 49%);
+      background-size: 300% 300%;
+      border-radius: 10px;
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      height: calc(100% + 10px);
+      width: calc(100% + 10px);
+      z-index: -1;
+      animation: borderGradient 8s linear both infinite;
+    }
+
+    @keyframes borderGradient {
+      0%,
+      100% {
+        background-position: 0% 100%;
+      }
+      50% {
+        background-position: 100% 0%;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #browser {
+      transform: translateY(-100%);
+      -webkit-animation: moveDown 1.5s cubic-bezier(0.77, -0.5, 0.3, 1.5) forwards;
+      animation: moveDown 1.5s cubic-bezier(0.77, -0.5, 0.3, 1.5) forwards;
+    }
+
+    @keyframes moveDown {
+      from {
+        transform: translate(0, -100%);
+      }
+      to {
+        transform: translate(0, 0);
+      }
+    }
+
+    #toldo {
+      animation: fadeIn 1s 1.4s ease-in forwards;
+    }
+
+    .grass {
+      animation: fadeIn 0.5s 1.6s ease-in forwards;
+    }
+
+    #window {
+      animation: fadeIn 0.5s 1.8s ease-in forwards;
+    }
+
+    #door {
+      animation: fadeIn 0.5s 2s ease-in forwards;
+    }
+
+    #sign {
+      transform-origin: 837px 597px;
+      animation: pendulum 1.5s 2s ease-in-out alternate;
+    }
+
+    .trees {
+      animation: fadeIn 0.5s 2.2s ease-in forwards;
+    }
+
+    #toldo,
+    .grass,
+    #window,
+    #door,
+    .trees,
+    .cat,
+    .cat-shadow,
+    .box,
+    .parachute,
+    .tshirt,
+    .cap,
+    .ball,
+    #text,
+    #button,
+    .sky-circle,
+    .sky-circle2,
+    .sky-circle3 {
+      opacity: 0;
+    }
+
+    @keyframes pendulum {
+      20% {
+        transform: rotate(60deg);
+      }
+      40% {
+        transform: rotate(-40deg);
+      }
+      60% {
+        transform: rotate(20deg);
+      }
+      80% {
+        transform: rotate(-5deg);
+      }
+    }
+
+    .cat {
+      transform-origin: 1145px 620px;
+    }
+
+    .cat-shadow {
+      transform-origin: 1115px 625px;
+    }
+
+    #store:hover .cat {
+      animation: catHi 3s 3s cubic-bezier(0.7, -0.5, 0.3, 1.4);
+    }
+
+    #store:hover .cat-shadow {
+      animation: catShadow 4s 2s cubic-bezier(0.7, -0.5, 0.3, 1.4) alternate;
+    }
+
+    @keyframes catHi {
+      0%,
+      100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      10%,
+      60% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes catShadow {
+      0%,
+      100% {
+        transform: translate(40px, -35px) scale(0.3);
+      }
+      10%,
+      60% {
+        opacity: 1;
+        transform: translate(-5px, 10px) scale(0.5);
+      }
+      60% {
+        opacity: 0;
+      }
+    }
+
+    .box,
+    .parachute {
+      transform-origin: 430px 100px;
+      animation: moveBox 14s 4s linear forwards infinite;
+    }
+
+    .parachute {
+      animation: parachute 14s 4s linear forwards infinite;
+    }
+
+    @keyframes moveBox {
+      0% {
+        opacity: 0;
+        transform: translate(0, -150px) rotate(20deg);
+      }
+      15% {
+        opacity: 1;
+        transform: translate(0, 100px) rotate(-15deg);
+      }
+      25% {
+        transform: translate(0, 250px) rotate(10deg);
+      }
+      30% {
+        transform: translate(0, 350px) rotate(-5deg);
+      }
+      35% {
+        opacity: 1;
+        transform: translate(0, 570px) rotate(0deg);
+      }
+      45%,
+      100% {
+        opacity: 0;
+        transform: translate(0, 570px);
+      }
+    }
+
+    @keyframes parachute {
+      0% {
+        transform: translate(0, -150px) rotate(20deg) scale(0.8);
+        opacity: 0;
+      }
+      15% {
+        transform: translate(0, 100px) rotate(-15deg) scale(1);
+        opacity: 1;
+      }
+      25% {
+        transform: translate(0, 250px) rotate(10deg);
+      }
+      30% {
+        transform: translate(0, 350px) rotate(-5deg);
+      }
+      33% {
+        transform: translate(0, 460px) rotate(0deg) scale(0.9);
+        opacity: 1;
+      }
+      45%,
+      100% {
+        transform: translate(0, 480px);
+        opacity: 0;
+      }
+    }
+
+    .tshirt {
+      animation: fadeInOut 42s 10s ease-in forwards infinite;
+    }
+
+    .cap {
+      animation: fadeInOut 42s 24s ease-in forwards infinite;
+    }
+
+    .ball {
+      animation: fadeInOut 42s 38s ease-in forwards infinite;
+    }
+
+    #text,
+    #button {
+      animation: fadeIn 1s 5s ease-in forwards;
+    }
+
+    @keyframes fadeInOut {
+      5%,
+      12% {
+        opacity: 1;
+      }
+      20% {
+        opacity: 0;
+      }
+    }
+
+    .cloud {
+      animation: clouds 50s linear backwards infinite;
+    }
+
+    .cloud2 {
+      animation: clouds 40s 40s linear backwards infinite;
+    }
+
+    .plane {
+      animation: clouds 30s linear backwards infinite;
+      will-change: transform;
+    }
+
+    @keyframes clouds {
+      from {
+        transform: translate(-150%, 0);
+      }
+      to {
+        transform: translate(150%, 0);
+      }
+    }
+
+    .sky-circle {
+      animation: fadeInOut 10s 5s ease-in infinite;
+    }
+
+    .sky-circle2 {
+      animation: fadeInOut 12s 30s ease-in infinite;
+    }
+
+    .sky-circle3 {
+      animation: fadeInOut 8s 40s ease-in infinite;
+    }
+
+    #button {
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #0170bb;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #button:hover {
+      background-color: #005f99;
+    }
+  </style>
+</head>
+<body>
+  <div class="store-container border-animation">
+    <svg id="store" viewBox="0 0 1500 625">
+      <defs>
+        <style>
+          .cls-2 {
+            fill: #0170bb;
+          }
+          .cls-3 {
+            fill: #1a1a1a;
+          }
+          .cls-4 {
+            fill: #f28f8f;
+          }
+          .cls-5 {
+            fill: #f0f0f0;
+          }
+          .cls-6 {
+            fill: #e6e6e6;
+          }
+          .cls-7 {
+            fill: #ffddab;
+          }
+        </style>
+      </defs>
+      <g id="browser">
+        <path class="stroke" fill="#fff" d="M1410,150v300H30V150H1410m10-10H20v320H1420V140Z" />
+        <circle cx="65" cy="180" r="10" class="round-end cls-2" />
+        <circle cx="95" cy="180" r="10" class="round-end cls-2" />
+        <circle cx="125" cy="180" r="10" class="round-end cls-2" />
+      </g>
+      <g id="toldo" data-name="Layer 6">
+        <path class="stroke" fill="#fff" d="M64.21,250v100h50v-100H64.21m10-10h30v120H54.21V240h20Z" />
+        <path class="cls-2" d="M60,360h70v-80H60Z" />
+      </g>
+      <g id="window" data-name="Layer 3">
+        <path class="stroke" fill="#fff" d="M1224,248v84h52V248H1224m10-10h32v104h-52V238h10Z" />
+        <path class="cls-3" d="M1220,342h60v-84h-60Z" />
+      </g>
+      <g id="door" data-name="Layer 4">
+        <path class="stroke" fill="#fff" d="M798,360v60h104v-60H798m10-10h84v80H788V350h20Z" />
+        <path class="cls-4" d="M794,430h112v-60h-112Z" />
+      </g>
+      <g id="sign" data-name="Layer 5">
+        <path class="stroke" fill="#fff" d="M840,120v40h160v-40H840m10-10h140v60H830V110h20Z" />
+        <path class="cls-5" d="M835,190h170v-80h-170Z" />
+        <text x="840" y="155" class="cls-3" style="font-size:30px;">Магазин</text>
+      </g>
+      <g class="trees" data-name="Layer 7">
+        <path class="cls-6" d="M40,380v70h30v-70H40M30,440v60h50v-60H30Z" />
+        <path class="cls-7" d="M1040,400v70h40v-70H1040M1030,460v70h60v-70H1030Z" />
+      </g>
+      <g class="cloud" data-name="Layer 8">
+        <path class="cls-5" d="M220,150c-20,0-40-10-60-10-20,0-40,10-60,10s-40-10-60-10c-20,0-40,10-60,10s-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10c-20,0-40-10-60-10s-40,10-60,10c-20,0-40-10-60-10s-40,10-60,10c-20,0-40-10-60-10s-40,10-60,10-40-10-60-10-40,10-60,10" />
+        <path class="cls-5" d="M340,140c-20,0-40-10-60-10-20,0-40,10-60,10s-40-10-60-10c-20,0-40,10-60,10s-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10" />
+        <path class="cls-5" d="M460,130c-20,0-40-10-60-10-20,0-40,10-60,10s-40-10-60-10c-20,0-40,10-60,10s-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10" />
+        <path class="cls-5" d="M580,120c-20,0-40-10-60-10-20,0-40,10-60,10s-40-10-60-10c-20,0-40,10-60,10s-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10-40-10-60-10-40,10-60,10" />
+      </g>
+      <g class="sky-circle" data-name="Layer 9">
+        <circle class="cls-7" cx="400" cy="200" r="40" />
+        <circle class="cls-7" cx="480" cy="250" r="30" />
+        <circle class="cls-7" cx="340" cy="280" r="20" />
+        <circle class="cls-7" cx="420" cy="320" r="25" />
+      </g>
+      <g class="sky-circle2" data-name="Layer 10">
+        <circle class="cls-7" cx="600" cy="250" r="20" />
+        <circle class="cls-7" cx="700" cy="300" r="25" />
+      </g>
+      <g class="sky-circle3" data-name="Layer 11">
+        <circle class="cls-7" cx="800" cy="350" r="30" />
+        <circle class="cls-7" cx="900" cy="400" r="40" />
+      </g>
+    </svg>
+    <button id="button" onclick="window.location.href='https://grando.com'">Перейти на сайт Грандо</button>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('button').style.display = 'block';
+      }, 7000); // Показать кнопку через 7 секунд
+    });
+  </script>
+</body>
+</html>
