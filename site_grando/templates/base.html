@@ -8,6 +8,7 @@
     <title>{% block title %}Корпоративный портал Грандо Логистик{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/news_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -15,15 +16,17 @@
     </header>
     <nav>
         <ul>
-            <li><a href="#">Главная</a></li>
-            <li><a href="{% url 'news_app:news_list' %}">Новости</a></li>
-            <li><a href="{% url 'vacation_app:vacation_upload' %}">Заявление на отпуск</a></li>
-            <li><a href="{% url 'vacation_app:vacation_list' %}">Список заявлений</a></li>
+            <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="{% url 'news_app:news_list' %}"><i class="fas fa-newspaper"></i> Новости</a></li>
+            <li><a href="{% url 'vacation_app:vacation_upload' %}"><i class="fas fa-plane-departure"></i> Заявление на отпуск</a></li>
+            <li><a href="{% url 'vacation_app:vacation_list' %}"><i class="fas fa-list"></i> Список заявлений</a></li>
+            <li><a href="{% url 'about_app:page_about' %}"><i class="fas fa-users"></i> Сотрудники</a></li>
+            <li><a href="{% url 'about_app:reference_book_list' %}"><i class="fas fa-address-book"></i> Контактная информация</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+            <li><a href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
             {% else %}
-            <li><a href="{% url 'users:login' %}">Войти</a></li>
-            <li><a href="{% url 'users:register' %}">Регистрация</a></li>
+            <li><a href="{% url 'users:login' %}"><i class="fas fa-sign-in-alt"></i> Войти</a></li>
+            <li><a href="{% url 'users:register' %}"><i class="fas fa-user-plus"></i> Регистрация</a></li>
             {% endif %}
         </ul>
     </nav>

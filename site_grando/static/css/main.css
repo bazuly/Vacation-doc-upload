@@ -2,41 +2,113 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #f5faff; /* светло-голубой фон */
 }
+
 header {
-    background-color: #333;
+    background-color: #4a90e2; /* голубой цвет */
     color: #fff;
     padding: 10px 20px;
     text-align: center;
 }
+
 nav {
-    background-color: #444;
-    color: #fff;
+    background-color: #d6e9f9; /* светло-голубой цвет */
+    color: #333;
     padding: 10px;
+    text-align: center; /* Центрирование навигационного меню */
 }
+
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: inline-block; /* Отображение списка в виде блочного элемента для центрирования */
 }
+
 nav ul li {
-    display: inline-block;
+    display: inline; /* Отображение элементов списка в одну строку */
     margin-right: 10px;
 }
+
 nav ul li a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
+
+nav ul li a:hover {
+    background-color: #4a90e2; /* голубой цвет при наведении */
+    color: #fff;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
 }
+
 footer {
-    background-color: #333;
+    background-color: #4a90e2; /* голубой цвет */
     color: #fff;
     padding: 10px 20px;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Стили для кнопок */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Стили для форм */
+form input[type="text"], form input[type="password"], form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Дополнительные стили */
+i {
+    margin-right: 5px;
 }

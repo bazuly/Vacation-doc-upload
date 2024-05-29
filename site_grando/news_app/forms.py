@@ -6,4 +6,8 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = NewsModel
         fields = ['title', 'content']
-        
+    
+        labels = {
+            'title': 'Заголовок',
+            'content': 'Текст'
+        }

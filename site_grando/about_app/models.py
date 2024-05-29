@@ -6,6 +6,10 @@ class AboutEmployeeModel(models.Model):
     content = models.CharField(max_length=256)
     photo = models.ImageField(upload_to='about/%Y/%m/%d/')
     
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        super().save(*args, **kwargs)
+    
     def __str__(self):
         return self.name
     
@@ -22,6 +26,10 @@ class ReferenceBookModel(models.Model):
     job = models.ForeignKey(JobModel, on_delete=models.CASCADE)
     additional_number = models.IntegerField(null=True, blank=True)
     additional_info = models.TextField(null=True, blank=True, max_length=512)
+    
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return self.name
