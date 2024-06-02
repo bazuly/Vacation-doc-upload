@@ -1,7 +1,6 @@
 from django.urls import path 
 from .views import index_about, reference_book_list, search_data_reference_book
 
-
 app_name = 'about_app'
 
 urlpatterns = [
@@ -10,4 +9,3 @@ urlpatterns = [
     path('search_data_reference_book', search_data_reference_book,
          name='search_data_reference_book')
 ]
-

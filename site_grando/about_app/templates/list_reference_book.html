@@ -13,7 +13,9 @@
             {% for reference in reference_book_data %}
                 <li>
                     <strong>Название:</strong> {{ reference.name | title }}
-                    <br> <strong>Должность:</strong> {{ reference.job }}
+                    <br> <strong>Должность:</strong> {{ reference.job | capfirst}}
+                    <br> <strong>Добавочный номер:</strong> {{ reference.additional_number }}
+                    <br> <strong>Дополнительная информация:</strong> {{ reference.additional_info | capfirst }}
                 </li>
                 <hr>
             {% endfor %}

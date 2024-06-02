@@ -60,3 +60,10 @@ def news_edit(request, news_id):
         'news_item': news_item
     }
     return render(request, 'news_edit.html', context)
+
+
+def news_detail(request, news_id):
+    news_item = get_object_or_404(NewsModel, pk=news_id)
+    context = {'news_item': news_item}
+    return render(request, 'news_detail.html', context)
+    

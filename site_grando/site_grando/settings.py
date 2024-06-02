@@ -74,9 +74,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
+TIME_ZONE = 'Europe/Moscow'
 
-TIME_ZONE = 'UTC'
+DATETIME_FORMAT = 'd.m.Y H:i'
+
+TIME_INPUT_FORMATS = [
+    '%H:%M',
+]
 
 USE_I18N = True
 
@@ -106,4 +111,4 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 LOGIN_REDIRECT_URL = '/vacation/vacation_upload/'
-DEFAULT_USER_IMAGE = '/'
+DEFAULT_USER_IMAGE = 'static/images/default-image.png'

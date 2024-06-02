@@ -37,20 +37,21 @@ def reference_book_list(request):
 def search_data_reference_book(request):
     query = request.GET.get('q').strip()
     query_lower = query.lower()
-    vac_data = ReferenceBookModel.objects.all()
+    reference_book_data = ReferenceBookModel.objects.all()
 
     if query:
-        vac_data = ReferenceBookModel.objects.filter(
+        reference_book_data = ReferenceBookModel.objects.filter(
             Q(name__icontains=query_lower) |
-            Q(job__icontains=query_lower) |
-            Q(additional_number__icontains=query_lower)
+            Q(job__job_title__icontains=query_lower) |
+            Q(additional_number__icontains=query_lower) |
+            Q(additional_info__icontains=query_lower)
         )
     else:
-        query = vac_data
+        query = reference_book_data
 
     context = {
-        'vac_data': vac_data,
+        'reference_book_data': reference_book_data,
         'query': query
     }
 
-    return render(request, 'list_vacation.html', context)
+    return render(request, 'list_reference_book.html', context)

@@ -16,7 +16,7 @@
     </header>
     <nav>
         <ul>
-            <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="{% url 'index' %}"><i class="fas fa-home"></i> Главная</a></li>
             <li><a href="{% url 'news_app:news_list' %}"><i class="fas fa-newspaper"></i> Новости</a></li>
             <li><a href="{% url 'vacation_app:vacation_upload' %}"><i class="fas fa-plane-departure"></i> Заявление на отпуск</a></li>
             <li><a href="{% url 'vacation_app:vacation_list' %}"><i class="fas fa-list"></i> Список заявлений</a></li>

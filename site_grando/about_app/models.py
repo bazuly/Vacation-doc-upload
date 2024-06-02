@@ -1,13 +1,17 @@
 from django.db import models
+import os 
+
+
+def upload_to(instance, filename):
+    return os.path.join('about', instance.name, filename)
 
 
 class AboutEmployeeModel(models.Model):
     name = models.CharField(max_length=128)
     content = models.CharField(max_length=256)
-    photo = models.ImageField(upload_to='about/%Y/%m/%d/')
+    photo = models.ImageField(upload_to=upload_to)
     
     def save(self, *args, **kwargs):
-        self.name = self.name.lower()
         super().save(*args, **kwargs)
     
     def __str__(self):
@@ -16,6 +20,10 @@ class AboutEmployeeModel(models.Model):
     
 class JobModel(models.Model):
     job_title = models.CharField(max_length=128, null=False)
+    
+    def save(self, *args, **kwargs):
+        self.job_title = self.job_title.lower()
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return self.job_title
@@ -29,6 +37,7 @@ class ReferenceBookModel(models.Model):
     
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
+        self.additional_info = self.additional_info.lower()
         super().save(*args, **kwargs)
     
     def __str__(self):

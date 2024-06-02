@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
     <h1>Список новостей</h1>
     {% if user.is_authenticated and perms.news_app.can_add_news_model %}
     <a href="{% url 'news_app:news_create' %}" class="btn btn-primary">Создать новость</a>
     {% endif %}
-    <ul>
+    <div class="news-list">
         {% for news in news_data %}
-            <li>
-                <h2>{{ news.title }}</h2>
-                <p>{{ news.content|truncatewords:30 }}</p>
-                <p>Опубликовано: {{ news.published_at }}</p>
-                {% if user.is_authenticated and perms.news_app.can_change_news_model %}
-                <a href="{% url 'news_app:news_edit' news.id %}" class="btn btn-secondary">Редактировать</a>
-                {% endif %}
-            </li>
-            <hr>
+            <a href="{% url 'news_app:news_detail' news.id %}" class="news-card-link">
+                <div class="news-card">
+                    {% if news.photo %}
+                    <div class="news-photo">
+                        <img src="{{ news.photo.url }}" alt="{{ news.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="news-details">
+                        <h2>{{ news.title }}</h2>
+                        <p>{{ news.content|truncatewords:30 }}</p>
+                        <p>Опубликовано: {{ news.published_at }}</p>
+                        {% if user.is_authenticated and perms.news_app.can_change_news_model %}
+                        <a href="{% url 'news_app:news_edit' news.id %}" class="btn btn-secondary">Редактировать</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
         {% endfor %}
-    </ul>
+    </div>
 
     <div class="pagination">
         <span class="step-links">
@@ -36,4 +45,5 @@
             {% endif %}
         </span>
     </div>
+</div>
 {% endblock %}
