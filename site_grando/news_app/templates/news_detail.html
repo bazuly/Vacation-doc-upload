@@ -10,7 +10,7 @@
         {% endif %}
         <div class="news-details">
             <h1>{{ news_item.title }}</h1>
-            <p>{{ news_item.content }}</p>
+            <p>{{ news_item.content|safe }}</p>
             <p>Опубликовано: {{ news_item.published_at }}</p>
             {% if user.is_authenticated and perms.news_app.can_change_news_model %}
             <a href="{% url 'news_app:news_edit' news_item.id %}" class="btn btn-secondary">Редактировать</a>

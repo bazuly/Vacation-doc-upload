@@ -19,7 +19,8 @@ INSTALLED_APPS = [
     'vacation_app',
     'users',
     'news_app',
-    'about_app'
+    'about_app',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+""" TIME|LANGUAGE FORM """
+
+
 LANGUAGE_CODE = 'ru'
 TIME_ZONE = 'Europe/Moscow'
 
@@ -87,6 +92,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+""" STATIC|MEDIA CONFIG """
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -97,6 +105,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+DEFAULT_USER_IMAGE = 'static/images/default-image.png'
+
+
+""" EMAIL CONFIG """
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
@@ -111,4 +123,28 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 LOGIN_REDIRECT_URL = '/vacation/vacation_upload/'
-DEFAULT_USER_IMAGE = 'static/images/default-image.png'
+
+
+""" CKEDITOR CONFIG """
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 300,
+    },
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
+}
+
+CKEDITOR_UPLOAD_PATH = "uploads_ckeditor/"

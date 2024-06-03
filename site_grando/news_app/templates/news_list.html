@@ -12,12 +12,12 @@
                 <div class="news-card">
                     {% if news.photo %}
                     <div class="news-photo">
-                        <img src="{{ news.photo.url }}" alt="{{ news.title }}">
+                        <img src="{{ news.photo.url }}">
                     </div>
                     {% endif %}
                     <div class="news-details">
-                        <h2>{{ news.title }}</h2>
-                        <p>{{ news.content|truncatewords:30 }}</p>
+                        <h2>{{ news.title|safe}}</h2>
+                        <p>{{ news.content|truncatewords:30|safe}}</p>
                         <p>Опубликовано: {{ news.published_at }}</p>
                         {% if user.is_authenticated and perms.news_app.can_change_news_model %}
                         <a href="{% url 'news_app:news_edit' news.id %}" class="btn btn-secondary">Редактировать</a>

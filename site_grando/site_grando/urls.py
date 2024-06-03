@@ -11,7 +11,8 @@ urlpatterns = [
     path('users/', include('users.urls'), name='users'),
     path('news/', include('news_app.urls'), name='news'),
     path('about/', include('about_app.urls'), name='about'),
-    path('grando-main-page/', index, name='index')
+    path('grando-main-page/', index, name='index'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     
 ]
 
