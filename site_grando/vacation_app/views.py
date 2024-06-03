@@ -7,6 +7,7 @@ from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
+from .models import HrEmailModel
 
 
 """ Success redirections """
@@ -61,11 +62,12 @@ def edit_vacation_status(request, vacation_id):
 """ Email sending """
 
 
-def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file_path):
-    to_email = ['serejka50@gmail.com']
-    subject = f'Заявление на отпуск от {name}'
+def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file_path, job_title):
+    hr_email_instance = HrEmailModel.objects.all()
+    email_list = [email.email for email in hr_email_instance]
+    subject = f'Заявление на отпуск от {name}, должность: {job_title}'
     message = f'Прошу предоставить отпуск в период с {vacation_date_start} по {vacation_date_end}'
-    email = EmailMessage(subject, message, to=to_email)
+    email = EmailMessage(subject, message, to=email_list)
     email.attach_file(vacation_file_path)
     email.send()
 
@@ -87,7 +89,8 @@ def vacation_upload(request):
                 vac_data.name,
                 vac_data.vacation_date_start,
                 vac_data.vacation_date_end,
-                vacation_file_path
+                vacation_file_path,
+                vac_data.job.job_title,
             )
 
             return HttpResponseRedirect(reverse('vacation_app:vacation_upload_success'))
