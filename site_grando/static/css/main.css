@@ -1,12 +1,14 @@
+/* styles.css */
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: Verdana, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f5faff; /* светло-голубой фон */
 }
 
 header {
-    background-color: #4a90e2; /* голубой цвет */
+    background: linear-gradient(to bottom, #002f4b, #4a90e2); /* Градиент от темно-синего к светло-синему */
     color: #fff;
     padding: 10px 20px;
     text-align: center;
@@ -54,13 +56,22 @@ nav ul li a:hover {
 }
 
 footer {
-    background-color: #4a90e2; /* голубой цвет */
+    background: linear-gradient(to bottom,  #4a90e2, #002f4b); /* голубой цвет */
     color: #fff;
     padding: 10px 20px;
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.footer-logo {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 30px; 
+    max-width: 100%; 
+    max-height: 100px; 
 }
 
 footer p {
@@ -242,4 +253,17 @@ i {
 .employee-details p {
     font-size: 16px;
     color: #666;
+}
+
+
+.news-content {
+    text-align: justify; /* Выравнивание текста по ширине */
+    line-height: 1.6; /* Межстрочный интервал */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.news-photo img {
+    max-width: 100%; /* Масштабирование изображения по ширине */
+    height: auto; /* Автоматическая высота */
+    border-radius: 5px; /* Скругленные углы */
 }

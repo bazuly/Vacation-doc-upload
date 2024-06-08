@@ -29,15 +29,28 @@ class JobModel(models.Model):
         return self.job_title
 
 
+class WorkPlace(models.Model):
+    work_place = models.CharField(max_length=128, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.work_place = self.work_place.lower()
+        super().save(*args, **kwargs)
+        
+    def __str__(self):
+        return self.work_place
+    
+
 class ReferenceBookModel(models.Model):
     name = models.CharField(max_length=128)
     job = models.ForeignKey(JobModel, on_delete=models.CASCADE)
     additional_number = models.IntegerField(null=True, blank=True)
     additional_info = models.TextField(null=True, blank=True, max_length=512)
+    work_place = models.ForeignKey(WorkPlace, on_delete=models.CASCADE, null=True, blank=True)
     
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
-        self.additional_info = self.additional_info.lower()
+        if self.additional_info:
+            self.additional_info = self.additional_info.lower()
         super().save(*args, **kwargs)
     
     def __str__(self):

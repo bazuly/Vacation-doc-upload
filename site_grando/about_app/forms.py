@@ -1,5 +1,5 @@
 from django import forms
-from .models import AboutEmployeeModel, JobModel, ReferenceBookModel
+from .models import AboutEmployeeModel, JobModel, ReferenceBookModel, WorkPlace
 
 
 class AboutEmployeeForm(forms.ModelForm):
@@ -18,3 +18,9 @@ class ReferenceBookModelForm(forms.ModelForm):
     class Meta:
         model = ReferenceBookModel
         fields = ['name', 'job', 'additional_number', 'additional_info']
+        
+
+class WorkPlace(forms.ModelForm):
+    class Meta:
+        model = WorkPlace
+        fields = ['work_place']

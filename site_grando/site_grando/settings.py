@@ -20,7 +20,8 @@ INSTALLED_APPS = [
     'users',
     'news_app',
     'about_app',
-    'ckeditor'
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 
 MIDDLEWARE = [
@@ -130,20 +131,11 @@ LOGIN_REDIRECT_URL = '/vacation/vacation_upload/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'extraPlugins': ','.join([
+            'uploadimage',
+        ]),
         'height': 300,
-        'width': 300,
-    },
-}
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source']
-        ]
+        'width': 1200
     }
 }
 
