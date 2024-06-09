@@ -26,17 +26,17 @@
         <div class="pagination">
             <span class="step-links">
                 {% if vac_data.has_previous %}
-                    <a href="?page=1">&laquo; First</a>
-                    <a href="?page={{ vac_data.previous_page_number }}">Previous</a>
+                    <a href="?page=1">&laquo; Первая</a>
+                    <a href="?page={{ vac_data.previous_page_number }}">Предыдущая</a>
                 {% endif %}
 
                 <span class="current">
-                    Page {{ vac_data.number }} of {{ vac_data.paginator.num_pages }}.
+                    Страница {{ vac_data.number }} of {{ vac_data.paginator.num_pages }}.
                 </span>
 
                 {% if vac_data.has_next %}
-                    <a href="?page={{ vac_data.next_page_number }}">Next</a>
-                    <a href="?page={{ vac_data.paginator.num_pages }}">Last &raquo;</a>
+                    <a href="?page={{ vac_data.next_page_number }}">Следующая</a>
+                    <a href="?page={{ vac_data.paginator.num_pages }}">Последняя &raquo;</a>
                 {% endif %}
             </span>
         </div>
