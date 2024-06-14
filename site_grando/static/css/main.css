@@ -1,271 +1,303 @@
 /* styles.css */
 
 body {
-    font-family: Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5faff; /* светло-голубой фон */
+  font-family: Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5faff;
 }
 
 header {
-    background: linear-gradient(to bottom, #002f4b, #4a90e2); /* Градиент от темно-синего к светло-синему */
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
+  background: linear-gradient(to bottom, #002f4b, #4a90e2);
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
 }
 
 nav {
-    background-color: #d6e9f9; /* светло-голубой цвет */
-    color: #333;
-    padding: 10px;
-    text-align: center; /* Центрирование навигационного меню */
+  background-color: #d6e9f9;
+  color: #333;
+  padding: 10px;
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block; /* Отображение списка в виде блочного элемента для центрирования */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 nav ul li {
-    display: inline; /* Отображение элементов списка в одну строку */
-    margin-right: 10px;
+  margin: 0;
 }
 
 nav ul li a {
-    color: #333;
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 nav ul li a:hover {
-    background-color: #4a90e2; /* голубой цвет при наведении */
-    color: #fff;
+  background-color: #4a90e2;
+  color: #fff;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    overflow: hidden;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
 }
 
 footer {
-    background: linear-gradient(to bottom,  #4a90e2, #002f4b); /* голубой цвет */
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  background: linear-gradient(to bottom, #4a90e2, #002f4b);
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-logo {
-    display: block;
-    margin: 0 auto;
-    width: 150px;
-    height: 30px; 
-    max-width: 100%; 
-    max-height: 100px; 
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: 30px;
+  max-width: 100%;
+  max-height: 100px;
 }
 
 footer p {
-    margin: 0;
+  margin: 0;
 }
 
 /* Стили для кнопок */
 button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 1000;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 1000;
 }
 
 button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 /* Стили для форм */
-form input[type="text"], form input[type="password"], form input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0 20px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 form input[type="submit"] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 form input[type="submit"]:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 /* Дополнительные стили */
 i {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 /* Стили для карточек новостей */
 .news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .news-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    overflow: hidden;
-    transition: transform 0.2s;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+  transition: transform 0.2s;
 }
 
 .news-card:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .news-photo {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
 }
 
 .news-photo img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .news-details {
-    padding: 10px 0;
+  padding: 10px 0;
 }
 
 .news-details h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+  margin: 0;
+  font-size: 24px;
+  color: #333;
 }
 
 .news-details p {
-    font-size: 16px;
-    color: #666;
+  font-size: 16px;
+  color: #666;
+}
+
+.news-content {
+  text-align: justify; /* Выравнивание текста по ширине */
+  line-height: 1.6; /* Межстрочный интервал */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+.news-photo img {
+  max-width: 100%; /* Масштабирование изображения по ширине */
+  height: auto; /* Автоматическая высота */
+  border-radius: 5px; /* Скругленные углы */
 }
 
 /* Стили для пагинации */
 .pagination {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .pagination .step-links {
-    display: inline-block;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  justify-content: center; /* Центрирование элементов пагинации */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 5px; /* Пробел между элементами */
 }
 
 .pagination .step-links a {
-    color: #4a90e2;
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 0 5px;
+  color: #4a90e2;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .pagination .step-links .current {
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #4a90e2;
-    color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #4a90e2;
+  color: #fff;
 }
-
 
 /* Стили для карточек сотрудников */
 .employee-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px; /* Пробел между карточками */
 }
 
 .employee-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    width: 300px;
-    text-align: center;
-    overflow: hidden;
-    transition: transform 0.2s; /* Плавный эффект при наведении */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.2s; /* Плавный эффект при наведении */
 }
 
 .employee-card:hover {
-    transform: scale(1.05); /* Увеличение карточки при наведении */
+  transform: scale(1.05); /* Увеличение карточки при наведении */
 }
 
 .employee-photo {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-bottom: 1px solid #ddd;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
 }
 
 .employee-photo img {
-    width: 100%;
-    height: auto;
-    object-fit: cover; /* Обеспечивает корректное отображение фото */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .employee-details {
-    padding: 20px;
+  padding: 20px;
 }
 
 .employee-details h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+  margin: 0;
+  font-size: 24px;
+  color: #333;
 }
 
 .employee-details p {
-    font-size: 16px;
-    color: #666;
+  font-size: 16px;
+  color: #666;
 }
 
+/* Мобильная верстка */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.news-content {
-    text-align: justify; /* Выравнивание текста по ширине */
-    line-height: 1.6; /* Межстрочный интервал */
-    margin-bottom: 20px; /* Отступ снизу */
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .news-list {
+    flex-direction: column;
+  }
+
+  .employee-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer {
+    position: static;
+  }
 }
-
-.news-photo img {
-    max-width: 100%; /* Масштабирование изображения по ширине */
-    height: auto; /* Автоматическая высота */
-    border-radius: 5px; /* Скругленные углы */
-}
-
-/* background-image: url('../images/back_vacation.jpg'); */
