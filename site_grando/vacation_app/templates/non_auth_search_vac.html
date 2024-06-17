@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Поиск заявления</title>
+</head>
+<body>
+    {% block content %}
+    <h1>Поиск заявления</h1>
+    
+    <form class="search-form" method="get" action="{% url 'vacation_app:non_auth_vacation_search' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="Введите имя для поиска" required>
+        <button type="submit">Искать</button>
+    </form>
+
+    {% if vac_data is not None %}
+        <ul class="vacation-list">
+            {% for vacation in vac_data %}
+                <li>ФИО: {{ vacation.name | title }}</li>
+                <li>Должность: {{ vacation.job }}</li>
+                <li>Статус согласования: {{ vacation.status_confirm }}</li>
+            {% empty %}
+                <li>Нет результатов</li>
+            {% endfor %}
+        </ul>
+        
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

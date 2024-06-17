@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     <h1>Список заявлений сотрудников</h1>
@@ -6,6 +7,11 @@
     <form method="get" action="{% url 'vacation_app:search_vac_data' %}" > 
         <input type="text" name="q" value="{{ query }}" placeholder="Введите имя для поиска" required>
         <button type="submit">Искать</button>
+        <li>
+            <a href="{% url 'vacation_app:vacation_list' %}"
+              ><i class="resetSearch"></i> Сбросить поиск</a>
+          </li>
+        
     </form>
 
     {% if vac_data %}

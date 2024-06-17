@@ -10,16 +10,21 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    # default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # project apps
     'vacation_app',
     'users',
     'news_app',
     'about_app',
+    
+    # additional libs
     'ckeditor',
     'ckeditor_uploader'
 ]

@@ -102,11 +102,11 @@ def vacation_upload(request):
     return render(request, 'vacation_upload.html', {'vac_form': vac_form})
 
 
-"""SEARCH VACATION DATA"""
+"""SEARCH VACATION DATA AUTH USER"""
 
 
 def search_vac_data(request):
-    query = request.GET.get('q').strip()
+    query = request.GET.get('q', '').strip()
     query_lower = query.lower()
     vac_data = VacationModel.objects.all()
 
@@ -124,3 +124,25 @@ def search_vac_data(request):
 
     return render(request, 'list_vacation.html', context)
 
+
+"""SEARCH VACATION DATA NOT AUTH USER"""
+
+
+def non_auth_vacation_search(request):
+    query = request.GET.get('q', '').strip()
+    query_lower = query.lower()
+    vac_data = ''
+
+    if query:
+        vac_data = VacationModel.objects.filter(
+            Q(name__icontains=query_lower)
+        )
+    else:
+        query = vac_data
+
+    context = {
+        'vac_data': vac_data,
+        'query': query
+    }
+
+    return render(request, 'non_auth_search_vac.html', context)
