@@ -1,13 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import VacationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import VacationModel
-from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
-from .models import HrEmailModel
+
+from vacation_app.handlers.email_handler import email_hr_handler
+from .forms import VacationForm
+from .models import VacationModel
+
+from datetime import datetime, timedelta
 
 
 """ Success redirections """
@@ -19,6 +21,12 @@ def vacation_upload_success(request):
 
 def vacation_edit_success(request):
     return render(request, 'vacation_edit_success.html')
+
+
+""" Search form for non auth users """
+
+def search_form_non_auth_user(request):
+    return render(request, 'non_auth_search_page.html')
 
 
 """ List all vacations requests """
@@ -59,18 +67,6 @@ def edit_vacation_status(request, vacation_id):
         return render(request, 'edit_vacation_status.html', {'vacation': vacation})
 
 
-""" Email sending """
-
-
-def send_email_to_hr(name, vacation_date_start, vacation_date_end, vacation_file_path, job_title):
-    hr_email_instance = HrEmailModel.objects.all()
-    email_list = [email.email for email in hr_email_instance]
-    subject = f'Заявление на отпуск от {name}, должность: {job_title}'
-    message = f'Прошу предоставить отпуск в период с {vacation_date_start} по {vacation_date_end}'
-    email = EmailMessage(subject, message, to=email_list)
-    email.attach_file(vacation_file_path)
-    email.send()
-
 
 """ Upload vacation data """
 
@@ -85,7 +81,7 @@ def vacation_upload(request):
 
             vacation_file_path = vac_data.vacation_file.path
 
-            send_email_to_hr(
+            email_hr_handler(
                 vac_data.name,
                 vac_data.vacation_date_start,
                 vac_data.vacation_date_end,
@@ -131,18 +127,23 @@ def search_vac_data(request):
 def non_auth_vacation_search(request):
     query = request.GET.get('q', '').strip()
     query_lower = query.lower()
-    vac_data = ''
+    vac_data = None
+
+    current_date = datetime.now().date()
+    half_year = current_date - timedelta(days=6*30)
 
     if query:
         vac_data = VacationModel.objects.filter(
+            Q(uploaded_at__gte=half_year) &
             Q(name__icontains=query_lower)
         )
     else:
-        query = vac_data
+        # Просто верните пустой набор данных, если нет запроса
+        vac_data = VacationModel.objects.none()
 
     context = {
         'vac_data': vac_data,
         'query': query
     }
 
-    return render(request, 'non_auth_search_vac.html', context)
+    return render(request, 'non_auth_search_empl_application.html', context)

@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import vacation_upload, vacation_upload_success, \
-list_vac, vacation_edit_success, edit_vacation_status, search_vac_data, non_auth_vacation_search
+    list_vac, vacation_edit_success, edit_vacation_status, search_vac_data,\
+    non_auth_vacation_search, search_form_non_auth_user
 
 app_name = 'vacation_app'
 
@@ -12,5 +13,7 @@ urlpatterns = [
     path('edit_vacation_status/<int:vacation_id>/', edit_vacation_status,
          name='edit_vacation_status'),
     path('vacation_search', search_vac_data, name='search_vac_data'),
-    path('non_aoth_vacation_search', non_auth_vacation_search, name='non_auth_vacation_search')
+    path('non_auth_vacation_search', non_auth_vacation_search, name='non_auth_vacation_search'),
+    path('search_form_non_auth_user', search_form_non_auth_user, name='search_form_non_auth_user')
+    
 ]
