@@ -32,12 +32,6 @@
           >
         </li>
         <li>
-          <a href="{% url 'vacation_app:vacation_upload' %}"
-            ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
-          >
-        </li>
-        
-        <li>
           <a href="{% url 'about_app:page_about' %}"
             ><i class="fas fa-users"></i> Сотрудники</a
           >
@@ -46,6 +40,11 @@
         <li>
           <a href="{% url 'about_app:reference_book_list' %}"
             ><i class="fas fa-address-book"></i> Контактная информация</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'vacation_app:vacation_upload' %}"
+            ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
           >
         </li>
         <li>
@@ -59,6 +58,11 @@
           >
         </li>
         {% else %}
+        <li>
+          <a href="{% url 'vacation_app:vacation_upload' %}"
+            ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
+          >
+        </li>
         <li>
           <a href="{% url 'vacation_app:search_form_non_auth_user' %}"
             ><i class="fas fa-list"></i> Статус заявления</a

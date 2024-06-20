@@ -13,7 +13,6 @@
     <form class="search-form" method="get" action="{% url 'vacation_app:non_auth_vacation_search' %}">
         <input type="text" name="q" value="{{ query }}" placeholder="Введите имя для поиска" required>
         <button type="submit">Искать</button>
-        {% comment %} <button type="button" onclick="window.location.href='{% url 'vacation_app:search_form_non_auth_user' %}'">Сбросить</button> {% endcomment %}
     </form>
 
     {% if vac_data %}
