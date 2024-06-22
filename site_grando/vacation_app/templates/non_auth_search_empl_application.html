@@ -18,11 +18,12 @@
     {% if vac_data %}
         <ul class="vacation-list">
             {% for vacation in vac_data %}
-                <li>ФИО: {{ vacation.name | title }}</li>
+                <li>ФИО: {{ vacation.name | title }}
                 <li>Должность: {{ vacation.job }}</li>
                 <li>Дата начала отпуска: {{ vacation.vacation_date_start }}</li>
                 <li>Дата окончания отпуска: {{ vacation.vacation_date_end }}</li>
                 <li>Статус согласования: {{ vacation.status_confirm }}</li>
+                <br>
             {% endfor %}
         </ul>
     {% elif vac_data is not None %}

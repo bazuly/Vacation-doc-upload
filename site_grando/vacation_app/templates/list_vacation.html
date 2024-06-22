@@ -19,7 +19,10 @@
             {% for vac in vac_data %}
                 <li>
                     ФИО: {{ vac.name | title }}
-                    <br> Должность: {{ vac.job }}
+                    <br> Должность: {{ vac.job | capfirst }}
+                    <br> Начало отпуска: {{ vac.vacation_date_start}}
+                    <br> Окончание отпуска: {{ vac.vacation_date_end }}
+                    <br> Вид отпуска: {{ vac.vacation_type }}
                     <br> Статус: {{ vac.status_confirm }}
                     {% if user.is_authenticated and perms.vacation_app.can_edit_vacation_status %}
                         <br> <a href="{% url 'vacation_app:edit_vacation_status' vac.id %}">Обновить статус</a>
