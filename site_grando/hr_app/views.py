@@ -103,11 +103,13 @@ def vacation_upload(request):
             )
 
             return HttpResponseRedirect(reverse('hr_app:vacation_upload_success'))
+        
         else:
             print('Vacation_data_upload form is not valid', vac_form.errors)
             return render(request, 'vacation_upload.html', {'vac_form': vac_form})
     else:
         vac_form = VacationForm(prefix='vac')
+        
     return render(request, 'vacation_upload.html', {'vac_form': vac_form})
 
 

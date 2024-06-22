@@ -7,7 +7,10 @@ from .validators import corp_email_validator
 class LoginUserForm(AuthenticationForm):
     class Meta:
         model = get_user_model()
-        fields = ['username', 'password']
+        fields = [
+            'username',
+            'password'
+        ]
         labels = {
             'username': 'Имя пользователя',
             'password': 'Пароль'
@@ -26,7 +29,14 @@ class RegisterUserForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
+        fields = [
+            'username', 
+            'email',
+            'first_name',
+            'last_name',
+            'password1',
+            'password2'
+        ]
         labels = {
             'email': 'E-mail',
             'first_name': 'Имя',
@@ -56,7 +66,12 @@ class ProfileUserForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'first_name', 'last_name']
+        fields = [
+            'username',
+            'email',
+            'first_name',
+            'last_name'
+        ]
         labels = {
             'first_name': 'Имя',
             'last_name': 'Фамилия'
