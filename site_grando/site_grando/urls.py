@@ -7,7 +7,7 @@ from .views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('vacation/', include('vacation_app.urls'), name='vacation_upload'),
+    path('vacation/', include('hr_app.urls'), name='vacation_upload'),
     path('users/', include('users.urls'), name='users'),
     path('news/', include('news_app.urls'), name='news'),
     path('about/', include('about_app.urls'), name='about'),

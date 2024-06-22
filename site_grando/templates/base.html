@@ -43,12 +43,12 @@
           >
         </li>
         <li>
-          <a href="{% url 'vacation_app:vacation_upload' %}"
+          <a href="{% url 'hr_app:vacation_upload' %}"
             ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
           >
         </li>
         <li>
-          <a href="{% url 'vacation_app:vacation_list' %}"
+          <a href="{% url 'hr_app:vacation_list' %}"
             ><i class="fas fa-list"></i> Список заявлений</a
           >
         </li>
@@ -59,12 +59,12 @@
         </li>
         {% else %}
         <li>
-          <a href="{% url 'vacation_app:vacation_upload' %}"
+          <a href="{% url 'hr_app:vacation_upload' %}"
             ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
           >
         </li>
         <li>
-          <a href="{% url 'vacation_app:search_form_non_auth_user' %}"
+          <a href="{% url 'hr_app:search_form_non_auth_user' %}"
             ><i class="fas fa-list"></i> Статус заявления</a
           >
         </li>

@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Список новостей</h1>
     {% if user.is_authenticated and perms.news_app.can_add_news_model %}
-    <a href="{% url 'news_app:news_create' %}" class="btn btn-primary">Создать новость</a>
+    {% comment %} <a href="{% url 'news_app:news_create' %}" class="btn btn-primary">Создать новость</a> {% endcomment %}
     {% endif %}
     <div class="news-list">
         {% for news in news_data %}

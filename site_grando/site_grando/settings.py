@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # project apps
-    'vacation_app',
+    'hr_app',
     'users',
     'news_app',
     'about_app',
