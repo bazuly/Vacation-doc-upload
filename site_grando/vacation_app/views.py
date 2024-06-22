@@ -11,7 +11,6 @@ from .models import VacationModel
 
 from datetime import datetime, timedelta
 
-
 """ Success redirections """
 
 
@@ -24,6 +23,7 @@ def vacation_edit_success(request):
 
 
 """ Search form for non auth users """
+
 
 def search_form_non_auth_user(request):
     return render(request, 'non_auth_search_page.html')
@@ -67,20 +67,24 @@ def edit_vacation_status(request, vacation_id):
         return render(request, 'edit_vacation_status.html', {'vacation': vacation})
 
 
-
 """ Upload vacation data """
+
 
 def vacation_upload(request):
     if request.method == 'POST':
         vac_form = VacationForm(request.POST, request.FILES, prefix='vac')
         if vac_form.is_valid():
             vac_data = vac_form.save(commit=False)
-            vac_data.vacation_file = request.FILES.get('vacation_file')
             vac_data.status_confirm = 'На согласовании'
+            
+            if 'vacation_file' in request.FILES:
+                vac_data.vacation_file = request.FILES.get('vacation_file')
+                vacation_file_path = vac_data.vacation_file.path
+            else:
+                vacation_file_path = None
+
             vac_data.save()
-
-            vacation_file_path = vac_data.vacation_file.path
-
+            
             email_hr_handler(
                 vac_data.name,
                 vac_data.vacation_date_start,
@@ -130,7 +134,7 @@ def non_auth_vacation_search(request):
     vac_data = None
 
     current_date = datetime.now().date()
-    half_year = current_date - timedelta(days=6*30)
+    half_year = current_date - timedelta(days=6 * 30)
 
     if query:
         vac_data = VacationModel.objects.filter(
@@ -138,7 +142,6 @@ def non_auth_vacation_search(request):
             Q(name__icontains=query_lower)
         )
     else:
-        # Просто верните пустой набор данных, если нет запроса
         vac_data = VacationModel.objects.none()
 
     context = {

@@ -1,6 +1,27 @@
 from django.db import models
 from about_app.models import JobModel
 
+"""
+Модель с именем ответственного лица на которого оформляется 
+заявление на отпуск
+"""
+
+class BossModel(models.Model):
+    name = models.CharField(
+        max_length=128,
+        null=True,
+        default='Минакову Вадиму Александровичу'
+    )
+
+    def __str__(self):
+        return self.name
+
+
+
+""" 
+Модель для загрузки заявления на отпуск с вложением 
+"""
+
 
 class VacationModel(models.Model):
     STATUS_CHOICES = [
@@ -8,16 +29,50 @@ class VacationModel(models.Model):
         ('Согласовано', 'Согласовано'),
         ('Отказ', 'Отказ')
     ]
-    name = models.CharField(max_length=128, null=False)
-    uploaded_at = models.DateTimeField(auto_now=True)
-    vacation_date_start = models.CharField(max_length=128)
-    vacation_date_end = models.CharField(max_length=128)
-    vacation_file = models.FileField(null=False,
-                                     upload_to='vacation_file_scan/%Y/%m/%d')
-    status_confirm = models.CharField(max_length=128,
-                                      choices=STATUS_CHOICES,
-                                      default=STATUS_CHOICES[0])
-    job = models.ForeignKey(JobModel, on_delete=models.CASCADE)
+    
+    OWN_EXPENSE_CHOICES = [
+        ('Оплачиваемый отпуск', 'Оплачиваемый отпуск'),
+        ('За счет сотрудника', 'За счет сотрудника')
+    ]
+    
+    name = models.CharField(
+        max_length=128,
+        null=False
+    )
+    uploaded_at = models.DateTimeField(
+        auto_now=True
+    )
+    vacation_date_start = models.DateField(
+        max_length=128
+    )
+    vacation_date_end = models.DateField(   
+        max_length=128
+    )
+    vacation_file = models.FileField(
+        null=True,
+        blank=True,
+        upload_to='vacation_file_scan/%Y/%m/%d'
+    )
+    status_confirm = models.CharField(
+        max_length=128,
+        choices=STATUS_CHOICES,
+        default=STATUS_CHOICES[0]
+    )
+    job = models.ForeignKey(
+        JobModel,
+        on_delete=models.CASCADE
+    )
+    vacation_type = models.CharField(
+        null=False,
+        default=OWN_EXPENSE_CHOICES[0],
+        choices=OWN_EXPENSE_CHOICES,
+        max_length=128
+    )
+    # Лицо с которым согласовывается отпуск
+    boss_name = models.ForeignKey(
+        BossModel,
+        on_delete=models.CASCADE
+    )
     
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
@@ -27,8 +82,16 @@ class VacationModel(models.Model):
         return self.name
 
 
+"""
+Модель для хранения почты HR сотрудника 
+"""
+
+
 class HrEmailModel(models.Model):
-    email = models.EmailField(max_length=128, null=False)
-    
+    email = models.EmailField(
+        max_length=128,
+        null=False
+    )
+
     def __str__(self):
         return self.email

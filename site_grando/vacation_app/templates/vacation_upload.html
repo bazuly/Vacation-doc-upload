@@ -6,7 +6,7 @@
         {% csrf_token %}
         {{ vac_form.as_p }}
         <label for="{{ vac_form.vacation_files.id_for_label }}"> Фото/Скан заявления: </label>
-        <input type="file" name="vacation_file" multiple required>
+        <input type="file" name="vacation_file">
         <button type="submit">Отправить заявление на согласование</button>
     </form>
 {% endblock %}

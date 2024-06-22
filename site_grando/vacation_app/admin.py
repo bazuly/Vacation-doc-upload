@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import VacationModel, HrEmailModel
+from .models import VacationModel, HrEmailModel, BossModel
 
 
 @admin.register(VacationModel)
@@ -9,3 +9,4 @@ class VacationModelAdmin(admin.ModelAdmin):
     save_on_top = True
 
 admin.site.register(HrEmailModel)
+admin.site.register(BossModel)

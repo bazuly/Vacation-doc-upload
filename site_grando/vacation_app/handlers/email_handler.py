@@ -11,5 +11,6 @@ def email_hr_handler(name, vacation_date_start, vacation_date_end, vacation_file
     subject = f'Заявление на отпуск от {name}, должность: {job_title}'
     message = f'Прошу предоставить отпуск в период с {vacation_date_start} по {vacation_date_end}'
     email = EmailMessage(subject, message, to=email_list)
-    email.attach_file(vacation_file_path)
+    if vacation_file_path is not None:
+        email.attach_file(vacation_file_path)
     email.send()

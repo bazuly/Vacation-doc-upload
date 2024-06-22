@@ -33,13 +33,13 @@
         </li>
         <li>
           <a href="{% url 'about_app:page_about' %}"
-            ><i class="fas fa-users"></i> Сотрудники</a
+            ><i class="fas fa-users"></i> Наша команда</a
           >
         </li>
         {% if user.is_authenticated %}
         <li>
           <a href="{% url 'about_app:reference_book_list' %}"
-            ><i class="fas fa-address-book"></i> Контактная информация</a
+            ><i class="fas fa-address-book"></i> Контактная информация сотрудников</a
           >
         </li>
         <li>
