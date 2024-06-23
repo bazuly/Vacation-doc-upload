@@ -1,3 +1,35 @@
 {% extends 'base.html' %}
-{% load static %}
 
+{% block content %}
+<div class="container">
+    <h1>Список вакансий</h1>
+
+    <ul class="vacancy-list">
+        {% for vacancy in vacancy_data %}
+            <li>
+                <strong>Название вакансии:</strong> {{ vacancy.title }}<br>
+                <strong>Описание:</strong> {{ vacancy.description }}<br>
+                <strong>Дата публикации:</strong> {{ vacancy.uploaded_at }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if vacancy_data.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ vacancy_data.previous_page_number }}">Назад</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ vacancy_data.number }} из {{ vacancy_data.paginator.num_pages }}.
+            </span>
+
+            {% if vacancy_data.has_next %}
+                <a href="?page={{ vacancy_data.next_page_number }}">Вперед</a>
+                <a href="?page={{ vacancy_data.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

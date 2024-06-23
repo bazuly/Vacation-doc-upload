@@ -7,6 +7,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 заявление на отпуск
 """
 
+
 class BossModel(models.Model):
     name = models.CharField(
         max_length=128,
@@ -21,6 +22,7 @@ class BossModel(models.Model):
 """ 
 Модель для загрузки заявления на отпуск с вложением 
 """
+
 
 class VacationModel(models.Model):
     STATUS_CHOICES = [
@@ -85,6 +87,7 @@ class VacationModel(models.Model):
 Модель для хранения почты HR сотрудника 
 """
 
+
 class HrEmailModel(models.Model):
     email = models.EmailField(
         max_length=128,
@@ -99,6 +102,7 @@ class HrEmailModel(models.Model):
 Модель вакансий 
 """
 
+
 class VacancyModel(models.Model):
     vacancy_name = models.CharField(
         max_length=128,
@@ -112,11 +116,10 @@ class VacancyModel(models.Model):
     uploaded_at = models.DateTimeField(
         auto_now=True
     )
-    
+
     def save(self, *args, **kwargs):
         self.vacancy_name = self.vacancy_name.lower()
         super().save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.vacancy_name
-    

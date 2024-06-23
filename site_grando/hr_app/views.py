@@ -148,6 +148,7 @@ def non_auth_vacation_search(request):
     query_lower = query.lower()
     vac_data = None
 
+    # поиск данных только за последние пол года 
     current_date = datetime.now().date()
     half_year = current_date - timedelta(days=6 * 30)
 
@@ -172,12 +173,11 @@ List vacancy
 """
 
 def list_vacancy(request):
-    vacancy_data = VacancyModel.objects.all.order_by('-uploaded_at')
+    vacancy_data = VacancyModel.objects.all().order_by('-uploaded_at')
     paginate_vacancy_data = paginate_queryset(vacancy_data, request)
     context = {
         'vacancy_data': paginate_vacancy_data
     }
 
     return render(request, 'vacancy_list.html', context)
-
-# шаблону для вакансий, урлы, миграции 
+    

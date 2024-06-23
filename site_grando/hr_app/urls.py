@@ -15,5 +15,5 @@ urlpatterns = [
     path('vacation_search', search_vac_data, name='search_vac_data'),
     path('non_auth_vacation_search', non_auth_vacation_search, name='non_auth_vacation_search'),
     path('search_form_non_auth_user', search_form_non_auth_user, name='search_form_non_auth_user'),
-    path('vacancy_list', list_vacancy, name='list_vacancy')
+    path('vacancy_list', list_vacancy, name='vacancy_list')
 ]
