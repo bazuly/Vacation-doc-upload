@@ -43,6 +43,11 @@
           >
         </li>
         <li>
+          <a href="{% url 'hr_app:vacancy_list' %}"
+            ><i class="fas fa-list"></i> Активные вакансии</a
+          >
+        </li>
+        <li>
           <a href="{% url 'hr_app:vacation_upload' %}"
             ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
           >
@@ -57,12 +62,12 @@
             ><i class="fas fa-sign-out-alt"></i> Выйти</a
           >
         </li>
+        {% else %}
         <li>
           <a href="{% url 'hr_app:vacancy_list' %}"
             ><i class="fas fa-list"></i> Активные вакансии</a
           >
         </li>
-        {% else %}
         <li>
           <a href="{% url 'hr_app:vacation_upload' %}"
             ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
@@ -76,11 +81,6 @@
         <li>
           <a href="{% url 'users:login' %}"
             ><i class="fas fa-sign-in-alt"></i> Войти</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'hr_app:vacancy_list' %}"
-            ><i class="fas fa-list"></i> Активные вакансии</a
           >
         </li>
         <li>

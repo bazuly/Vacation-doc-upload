@@ -52,7 +52,7 @@ nav ul li a:hover {
   overflow: hidden;
   background-color: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 footer {
@@ -226,7 +226,7 @@ i {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 20px; /* Пробел между карточками */
+  gap: 20px;
 }
 
 .employee-card {
@@ -237,11 +237,11 @@ i {
   width: 300px;
   text-align: center;
   overflow: hidden;
-  transition: transform 0.2s; /* Плавный эффект при наведении */
+  transition: transform 0.2s;
 }
 
 .employee-card:hover {
-  transform: scale(1.05); /* Увеличение карточки при наведении */
+  transform: scale(1.05);
 }
 
 .employee-photo {
@@ -271,6 +271,46 @@ i {
   font-size: 16px;
   color: #666;
 }
+
+.vacancy-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vacancy-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.vacancy-item:hover {
+  transform: scale(1.02);
+}
+
+.vacancy-content {
+  text-align: justify;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.vacancy-link {
+  display: inline-block;
+  background-color: #4a90e2;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.vacancy-link:hover {
+  background-color: #357ab8;
+}
+
 
 /* Мобильная верстка */
 @media (max-width: 768px) {

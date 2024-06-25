@@ -4,15 +4,17 @@
 <div class="container">
     <h1>Список вакансий</h1>
 
-    <ul class="vacancy-list">
+    <div class="vacancy-grid">
         {% for vacancy in vacancy_data %}
-            <li>
-                <strong>Название вакансии:</strong> {{ vacancy.title }}<br>
-                <strong>Описание:</strong> {{ vacancy.description }}<br>
-                <strong>Дата публикации:</strong> {{ vacancy.uploaded_at }}<br>
-            </li>
+            <div class="vacancy-item">
+                <h2>{{ vacancy.vacancy_name|capfirst }}</h2>
+                <div class="vacancy-content">
+                    {{ vacancy.content|truncatewords:20|safe }}
+                </div>
+                <a href="{% url 'hr_app:vacancy_detail' vacancy.id %}" class="vacancy-link">Подробнее</a>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 
     <div class="pagination">
         <span class="step-links">

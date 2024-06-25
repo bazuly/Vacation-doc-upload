@@ -12,7 +12,8 @@ class BossModel(models.Model):
     name = models.CharField(
         max_length=128,
         null=True,
-        default='Минакову Вадиму Александровичу'
+        default='Минакову Вадиму Александровичу',
+        verbose_name='Имя руководителя'
     )
 
     def __str__(self):
@@ -72,7 +73,7 @@ class VacationModel(models.Model):
     # Лицо с которым согласовывается отпуск
     boss_name = models.ForeignKey(
         BossModel,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     def save(self, *args, **kwargs):
@@ -91,7 +92,8 @@ class VacationModel(models.Model):
 class HrEmailModel(models.Model):
     email = models.EmailField(
         max_length=128,
-        null=False
+        null=False,
+        verbose_name='Почта отдела кадров'
     )
 
     def __str__(self):
@@ -106,13 +108,22 @@ class HrEmailModel(models.Model):
 class VacancyModel(models.Model):
     vacancy_name = models.CharField(
         max_length=128,
-        null=False
+        null=False,
+        verbose_name='Название вакансии'
     )
     salary = models.CharField(
         max_length=256,
-        null=False
+        null=False,
+        verbose_name='Оклад'
     )
-    content = RichTextUploadingField()
+    short_description = models.TextField(
+        max_length=128,
+        blank=True,
+        verbose_name='Краткое описание'
+    )
+    content = RichTextUploadingField(
+        verbose_name='Описание вакансии'
+    )
     uploaded_at = models.DateTimeField(
         auto_now=True
     )
@@ -123,3 +134,27 @@ class VacancyModel(models.Model):
 
     def __str__(self):
         return self.vacancy_name
+
+
+""" 
+Request Vacancy Model
+"""
+
+class VacancyRequestModel(models.Model):
+    name = models.CharField(
+        max_length=128,
+    )
+    contact = models.TextField(
+        max_length=512
+    )
+    resume_upload = models.FileField(
+        null=True,
+        blank=True,
+        upload_to='resume_file/%Y/%m/%d'
+    )
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name

@@ -30,7 +30,7 @@ class VacationForm(forms.ModelForm):
         self.fields['status_confirm'].initial = 'На согласовании'
 
 
-class VacancyModelForm(forms.ModelForm):
+class VacancyForm(forms.ModelForm):
     class Meta:
         model = VacancyModel
         fields = [

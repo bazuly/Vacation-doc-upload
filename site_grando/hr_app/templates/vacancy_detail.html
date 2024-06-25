@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ vacancy_item.vacancy_name|capfirst }}</h1>
+    <h2>Оклад: {{ vacancy_item.salary|safe }}</h2>
+    <div class="vacancy-content">
+        {{ vacancy_item.content|safe }}
+    </div>
+    <p><strong>Дата публикации:</strong> {{ vacancy_item.uploaded_at }}</p>
+    <a href="{% url 'hr_app:vacancy_list' %}" class="back-link">Откликнуться на вакансию</a>
+    <br>
+    <br>
+    <a href="{% url 'hr_app:vacancy_list' %}" class="back-link">Вернуться к списку вакансий</a>
+</div>
+{% endblock %}

@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 
-from hr_app.handlers.email_handler import email_hr_handler
-from .forms import VacationForm
+from hr_app.handlers.email_handler import vacation_email_hr_handler, vacancy_email_hr_handler
+from .forms import VacationForm, VacancyForm
 from .models import VacationModel, VacancyModel
 from site_grando.handlers.pagination_handler import paginate_queryset
 
@@ -24,6 +24,10 @@ def vacation_upload_success(request):
 
 def vacation_edit_success(request):
     return render(request, 'vacation_edit_success.html')
+
+
+def vacancy_sending_success(request):
+    return render(request, 'vacancy_send_success.html')
 
 
 """
@@ -94,7 +98,7 @@ def vacation_upload(request):
 
             vac_data.save()
 
-            email_hr_handler(
+            vacation_email_hr_handler(
                 vac_data.name,
                 vac_data.vacation_date_start,
                 vac_data.vacation_date_end,
@@ -114,7 +118,7 @@ def vacation_upload(request):
 
 
 """
-SEARCH VACATION DATA AUTH USER
+Search vacation data auth user
 """
 
 
@@ -180,4 +184,58 @@ def list_vacancy(request):
     }
 
     return render(request, 'vacancy_list.html', context)
+
+
+""" 
+Vacancy detail
+"""
+
+def vacancy_detail(request, vacancy_id):
+    vacancy_item = get_object_or_404(VacancyModel, pk=vacancy_id)
+    context = {
+        'vacancy_item': vacancy_item
+    }
+    return render(request, 'vacancy_detail.html', context)
     
+
+"""
+Response to vacancy
+"""
+
+def responce_to_vacancy(request):
+    if request.method == 'POST':
+        vacancy_form = VacancyForm(
+            request.POST,
+            request.FILES,
+            prefix='vacancy'
+        )
+        if vacancy_form.is_valid():
+            vacancy_data = vacancy_form.save(commit=False)
+            if 'vacancy_file' in request.FILES:
+                vacancy_data.resume_upload = request.FILES.get('resume_upload')
+                vacancy_data.save()
+                vacancy_file_path = vacancy_data.resume_upload.path
+                
+                if not os.path.exists(vacancy_file_path):
+                    vacancy_file_path = None
+            
+            else:
+                vacancy_file_path = None
+
+            vacancy_data.save()
+            
+            vacancy_email_hr_handler(
+                vacancy_data.name,
+                vacancy_file_path,
+                vacancy_data.contact
+            )
+            
+            return HttpResponseRedirect(reverse('hr_app:vacation_send_success'))
+        else:
+            print('Vacancy data form is not valid', vacancy_form.errors)
+            return render(request, 'vacancy_list.html', {'vacancy_form': vacancy_form})
+    else:
+        vacancy_form = VacationForm(prefix='vac')
+        
+    return render(request, 'vacancy_list.html', {'vacancy_form': vacancy_form})
+
