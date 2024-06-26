@@ -152,6 +152,10 @@ class VacancyRequestModel(models.Model):
         blank=True,
         upload_to='resume_file/%Y/%m/%d'
     )
+    vacancy = models.CharField(
+        max_length=128,
+        blank=True
+    )
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

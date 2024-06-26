@@ -21,12 +21,11 @@ def vacation_email_hr_handler(name, vacation_date_start, vacation_date_end, vaca
     email.send()
     
 
-def vacancy_email_hr_handler(name, vacancy_file_path, contact):
+def vacancy_email_hr_handler(name, vacancy_name, vacancy_file_path, contact):
     hr_email_instance = HrEmailModel.objects.all()
-    vacancy_name = VacancyModel.objects.get('vacancy_name')
     email_list = [email.email for email in hr_email_instance]
     subject = f'Отклик на вакансию {vacancy_name}'
-    message = f'Добрый день. Отклик на вакансию {vacancy_name}. \n ФИО: {name} \n {contact}' 
+    message = f'Добрый день. Отклик на вакансию {vacancy_name}. \nФИО: {name} \nКонтактная информация: {contact}' 
             
     email = EmailMessage(subject, message, to=email_list)
     

@@ -1,5 +1,5 @@
 from django import forms
-from .models import VacationModel, VacancyModel
+from .models import VacationModel, VacancyModel, VacancyRequestModel
 
 
 class VacationForm(forms.ModelForm):
@@ -43,3 +43,24 @@ class VacancyForm(forms.ModelForm):
             'salary': 'Оклад', 
             'content': 'Содержание'
         }
+        
+        
+class VacancyRequestForm(forms.ModelForm):
+    class Meta:
+        model = VacancyRequestModel
+        fields = [
+            'name',
+            'contact',
+            'resume_upload',
+            'vacancy'
+            
+        ]
+        labels = {
+            'name': 'ФИО',
+            'contact': 'Контактная информация для связи с Вами',
+            'resume_upload': 'Файл с Вашим резюме',
+            'vacancy': 'Название вакансии'
+        }
+        vacancy = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+        
+    

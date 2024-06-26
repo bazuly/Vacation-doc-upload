@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import vacation_upload, vacation_upload_success, \
     list_vac, vacation_edit_success, edit_vacation_status, search_vac_data, \
-    non_auth_vacation_search, search_form_non_auth_user, list_vacancy, vacancy_detail
+    non_auth_vacation_search, search_form_non_auth_user, list_vacancy, \
+    vacancy_detail, response_to_vacancy, vacancy_sending_success
+        
 
 app_name = 'hr_app'
 
@@ -20,8 +22,11 @@ urlpatterns = [
     path('non_auth_vacation_search', non_auth_vacation_search, name='non_auth_vacation_search'),
     path('search_form_non_auth_user', search_form_non_auth_user, name='search_form_non_auth_user'),
     
-    # Приложение с вакансиями
+    # Отображение вакансий
     path('vacancy_list', list_vacancy, name='vacancy_list'),
     path('vacancy_detail/<int:vacancy_id>/', vacancy_detail, name='vacancy_detail'),
     
+    # Отклики на вакансии
+    path('vacancy_detail/<int:vacancy_id>/apply/', response_to_vacancy, name='response_to_vacancy'),
+    path('vacancy_sending_success', vacancy_sending_success, name='vacancy_sending_success')
 ]

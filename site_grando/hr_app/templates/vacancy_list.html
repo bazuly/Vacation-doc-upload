@@ -9,7 +9,7 @@
             <div class="vacancy-item">
                 <h2>{{ vacancy.vacancy_name|capfirst }}</h2>
                 <div class="vacancy-content">
-                    {{ vacancy.content|truncatewords:20|safe }}
+                    {{ vacancy.content|truncatewords:20 | safe }}
                 </div>
                 <a href="{% url 'hr_app:vacancy_detail' vacancy.id %}" class="vacancy-link">Подробнее</a>
             </div>

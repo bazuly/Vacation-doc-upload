@@ -2,20 +2,12 @@
 
 {% block content %}
 <div class="container">
-    <h1>{{ vacancy_item.vacancy_name|capfirst }}</h1>
-    <h2>Оклад: {{ vacancy_item.salary|safe }}</h2>
-    <div class="vacancy-content">
-        {{ vacancy_item.content|safe }}
-    </div>
-    <p><strong>Дата публикации:</strong> {{ vacancy_item.uploaded_at }}</p>
-    
+    <h1>Отклик на вакансию: {{ vacancy_item.vacancy_name|capfirst }}</h1>
     <form action="{% url 'hr_app:response_to_vacancy' vacancy_item.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ vacancy_form.as_p }}
-        <br>
-        <button type="submit">Откликнуться на вакансию</button>
+        <button type="submit">Отправить отклик</button>
     </form>
-    
     <br>
     <br>
     <a href="{% url 'hr_app:vacancy_list' %}" class="back-link">Вернуться к списку вакансий</a>
