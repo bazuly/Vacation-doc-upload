@@ -150,7 +150,7 @@ class VacancyRequestModel(models.Model):
     resume_upload = models.FileField(
         null=True,
         blank=True,
-        upload_to='resume_file/%Y/%m/%d'
+        upload_to='resume_files/'
     )
     vacancy = models.CharField(
         max_length=128,

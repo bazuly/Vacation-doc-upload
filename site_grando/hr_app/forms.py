@@ -12,7 +12,7 @@ class VacationForm(forms.ModelForm):
             'status_confirm',
             'job',
             'vacation_type',
-            'boss_name'
+            # 'boss_name'
         ]
         labels = {
             'name': 'ФИО',
@@ -20,7 +20,7 @@ class VacationForm(forms.ModelForm):
             'vacation_date_end': 'Дата окончания отпуска',
             'job': 'Должность',
             'vacation_type': 'Вариант отпуска',
-            'boss_name': 'Кому'
+            # 'boss_name': 'Кому'
 
         }
 
@@ -46,6 +46,8 @@ class VacancyForm(forms.ModelForm):
         
         
 class VacancyRequestForm(forms.ModelForm):
+    vacancy = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+    
     class Meta:
         model = VacancyRequestModel
         fields = [
@@ -61,6 +63,4 @@ class VacancyRequestForm(forms.ModelForm):
             'resume_upload': 'Файл с Вашим резюме',
             'vacancy': 'Название вакансии'
         }
-        vacancy = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
         
-    

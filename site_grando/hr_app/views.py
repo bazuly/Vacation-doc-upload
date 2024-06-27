@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 
 from hr_app.handlers.email_handler import vacation_email_hr_handler, vacancy_email_hr_handler
-from .forms import VacationForm, VacancyForm
+from .forms import VacationForm, VacancyRequestForm
 from .models import VacationModel, VacancyModel
 from site_grando.handlers.pagination_handler import paginate_queryset
 
@@ -206,7 +206,7 @@ def response_to_vacancy(request, vacancy_id):
     vacancy_item = get_object_or_404(VacancyModel, pk=vacancy_id)
     
     if request.method == 'POST':
-        vacancy_form = VacancyForm(
+        vacancy_form = VacancyRequestForm(
             request.POST,
             request.FILES,
             prefix='vacancy'
