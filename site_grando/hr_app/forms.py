@@ -46,7 +46,7 @@ class VacancyForm(forms.ModelForm):
         
         
 class VacancyRequestForm(forms.ModelForm):
-    vacancy = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+   # vacancy = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
     
     class Meta:
         model = VacancyRequestModel
@@ -54,13 +54,12 @@ class VacancyRequestForm(forms.ModelForm):
             'name',
             'contact',
             'resume_upload',
-            'vacancy'
-            
+           # 'vacancy'
         ]
         labels = {
             'name': 'ФИО',
             'contact': 'Контактная информация для связи с Вами',
             'resume_upload': 'Файл с Вашим резюме',
-            'vacancy': 'Название вакансии'
+          #  'vacancy': 'Название вакансии'
         }
         

@@ -206,27 +206,18 @@ def response_to_vacancy(request, vacancy_id):
     vacancy_item = get_object_or_404(VacancyModel, pk=vacancy_id)
     
     if request.method == 'POST':
-        vacancy_form = VacancyRequestForm(
-            request.POST,
-            request.FILES,
-            prefix='vacancy'
-        )
+        vacancy_form = VacancyRequestForm(request.POST, request.FILES)
         if vacancy_form.is_valid():
             vacancy_data = vacancy_form.save(commit=False)
+            vacancy_data.vacancy = vacancy_item.vacancy_name
             
-            # берем из модели название вакансии и передаем его
-            # в нашу заготовленную форму, где эта вакансия будет отображаться в readonly
-            vacancy_data.vacancy = vacancy_item.name
             if 'resume_upload' in request.FILES:
                 vacancy_data.resume_upload = request.FILES.get('resume_upload')
                 vacancy_data.save()
                 vacancy_file_path = vacancy_data.resume_upload.path
                 
-                # если файла нет, соответственно и директории нет
-                # мы будет отправлять None
                 if not os.path.exists(vacancy_file_path):
                     vacancy_file_path = None
-            
             else:
                 vacancy_file_path = None
 
@@ -242,9 +233,10 @@ def response_to_vacancy(request, vacancy_id):
             return HttpResponseRedirect(reverse('hr_app:vacancy_sending_success'))
         else:
             print('Vacancy data form is not valid', vacancy_form.errors)
-            return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item})
+            return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item, 'vacancy_form': vacancy_form})
     else:
-        vacancy_form = VacationForm(prefix='vac')
+        initial_data = {'vacancy': vacancy_item.vacancy_name}
+        vacancy_form = VacancyRequestForm(initial=initial_data)
         
-    return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item})
+    return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item, 'vacancy_form': vacancy_form})
 

@@ -5,7 +5,7 @@
     <h1>Отклик на вакансию: {{ vacancy_item.vacancy_name|capfirst }}</h1>
     <form action="{% url 'hr_app:response_to_vacancy' vacancy_item.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ vacancy_form.as_p }}
+        {{ vacancy_form.as_p }} 
         <button type="submit">Отправить отклик</button>
     </form>
     <br>
