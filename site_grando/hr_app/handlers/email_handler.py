@@ -1,6 +1,7 @@
-from hr_app.models import HrEmailModel, VacancyModel
+from hr_app.models import HrEmailModel
 from django.core.mail import EmailMessage
 import os
+from datetime import datetime
 
 
 """
@@ -21,11 +22,12 @@ def vacation_email_hr_handler(name, vacation_date_start, vacation_date_end, vaca
     email.send()
     
 
-def vacancy_email_hr_handler(name, vacancy_name, vacancy_file_path, contact):
+def vacancy_email_hr_handler(name, vacancy_name, vacancy_file_path, contact, covering_letter):
+    apply_date = datetime.now().date()
     hr_email_instance = HrEmailModel.objects.all()
     email_list = [email.email for email in hr_email_instance]
-    subject = f'Отклик на вакансию {vacancy_name}'
-    message = f'Добрый день. Отклик на вакансию {vacancy_name}. \nФИО: {name} \nКонтактная информация: {contact}' 
+    subject = f'Отклик на вакансию {vacancy_name} за {apply_date}'
+    message = f'Добрый день. Отклик на вакансию {vacancy_name}. \nФИО: {name} \nКонтактная информация: {contact} \n Сопроводительное письмо: \n {covering_letter}' 
             
     email = EmailMessage(subject, message, to=email_list)
     

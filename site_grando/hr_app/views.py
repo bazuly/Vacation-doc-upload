@@ -227,16 +227,19 @@ def response_to_vacancy(request, vacancy_id):
                 vacancy_data.name,
                 vacancy_item.vacancy_name,
                 vacancy_file_path,
-                vacancy_data.contact
+                vacancy_data.contact,
+                vacancy_data.covering_letter
             )
             
             return HttpResponseRedirect(reverse('hr_app:vacancy_sending_success'))
         else:
             print('Vacancy data form is not valid', vacancy_form.errors)
-            return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item, 'vacancy_form': vacancy_form})
+            return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item,
+                                                              'vacancy_form': vacancy_form})
     else:
         initial_data = {'vacancy': vacancy_item.vacancy_name}
         vacancy_form = VacancyRequestForm(initial=initial_data)
         
-    return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item, 'vacancy_form': vacancy_form})
+    return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item,
+                                                      'vacancy_form': vacancy_form})
 
