@@ -144,18 +144,28 @@ Request Vacancy Model
 class VacancyRequestModel(models.Model):
     name = models.CharField(
         max_length=128,
+        verbose_name='ФИО'
     )
-    contact = models.TextField(
-        max_length=512
+    contact = models.CharField(
+        max_length=512,
+        verbose_name='Контактная информация'
+    )
+    covering_letter = models.TextField(
+        null=True,
+        blank=True,
+        max_length=1024,
+        verbose_name='Сопроводительное письмо'
     )
     resume_upload = models.FileField(
         null=True,
         blank=True,
-        upload_to='resume_files/'
+        upload_to='resume_files/',
+        verbose_name='Файл с резюме'
     )
     vacancy = models.CharField(
         max_length=128,
-        blank=True
+        blank=True,
+        verbose_name='Название вакансии, опционально'
     )
 
     def save(self, *args, **kwargs):
