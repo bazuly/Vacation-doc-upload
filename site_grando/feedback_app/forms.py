@@ -9,11 +9,12 @@ class FeedbackModelForm(forms.ModelForm):
             'title',
             'feedback_type',
             'content',
-            
+
         ]
 
         labels = {
             'title': 'Заголовок',
             'feedback_type': 'Тип отзыва',
             'content': 'Отзыв'
+
         }

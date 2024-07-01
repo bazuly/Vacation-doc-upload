@@ -8,7 +8,7 @@ class FeedbackView(CreateView):
     form_class = FeedbackModelForm
     template_name = 'feedback_apply.html'
     success_url = reverse_lazy('feedback_app:feedback_apply_success')
-    
+
 
 def feedback_apply_success(request):
-    render(request, 'feedback_apply_success.html')
+    return render(request, 'feedback_apply_success.html')

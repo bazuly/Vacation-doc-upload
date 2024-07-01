@@ -47,7 +47,7 @@ List all vacations requests
 def list_vac(request):
     vac_data = VacationModel.objects.all().order_by('-uploaded_at')
     paginate_vac_data = paginate_queryset(vac_data, request)
-    
+
     context = {
         'vac_data': paginate_vac_data
     }
@@ -89,10 +89,10 @@ def vacation_upload(request):
                 vac_data.vacation_file = request.FILES.get('vacation_file')
                 vac_data.save()
                 vacation_file_path = vac_data.vacation_file.path
-                
+
                 if not os.path.exists(vacation_file_path):
                     vacation_file_path = None
-                    
+
             else:
                 vacation_file_path = None
 
@@ -107,13 +107,13 @@ def vacation_upload(request):
             )
 
             return HttpResponseRedirect(reverse('hr_app:vacation_upload_success'))
-        
+
         else:
             print('Vacation_data_upload form is not valid', vac_form.errors)
             return render(request, 'vacation_upload.html', {'vac_form': vac_form})
     else:
         vac_form = VacationForm(prefix='vac')
-        
+
     return render(request, 'vacation_upload.html', {'vac_form': vac_form})
 
 
@@ -152,7 +152,7 @@ def non_auth_vacation_search(request):
     query_lower = query.lower()
     vac_data = None
 
-    # поиск данных только за последние пол года 
+    # поиск данных только за последние пол года
     current_date = datetime.now().date()
     half_year = current_date - timedelta(days=6 * 30)
 
@@ -176,6 +176,7 @@ def non_auth_vacation_search(request):
 List vacancy
 """
 
+
 def list_vacancy(request):
     vacancy_data = VacancyModel.objects.all().order_by('-uploaded_at')
     paginate_vacancy_data = paginate_queryset(vacancy_data, request)
@@ -190,13 +191,14 @@ def list_vacancy(request):
 Vacancy detail
 """
 
+
 def vacancy_detail(request, vacancy_id):
     vacancy_item = get_object_or_404(VacancyModel, pk=vacancy_id)
     context = {
         'vacancy_item': vacancy_item
     }
     return render(request, 'vacancy_detail.html', context)
-    
+
 
 """
 Response to vacancy
@@ -205,32 +207,32 @@ Response to vacancy
 
 def response_to_vacancy(request, vacancy_id):
     vacancy_item = get_object_or_404(VacancyModel, pk=vacancy_id)
-    
+
     if request.method == 'POST':
         vacancy_form = VacancyRequestForm(request.POST, request.FILES)
         if vacancy_form.is_valid():
             vacancy_data = vacancy_form.save(commit=False)
             vacancy_data.vacancy = vacancy_item.vacancy_name
-            
+
             if 'resume_upload' in request.FILES:
                 vacancy_data.resume_upload = request.FILES.get('resume_upload')
                 vacancy_data.save()
                 vacancy_file_path = vacancy_data.resume_upload.path
-                
+
                 if not os.path.exists(vacancy_file_path):
                     vacancy_file_path = None
             else:
                 vacancy_file_path = None
 
             vacancy_data.save()
-            
+
             vacancy_email_hr_handler(
                 vacancy_data.name,
                 vacancy_item.vacancy_name,
                 vacancy_file_path,
                 vacancy_data.contact,
             )
-            
+
             return HttpResponseRedirect(reverse('hr_app:vacancy_sending_success'))
         else:
             print('Vacancy data form is not valid', vacancy_form.errors)
@@ -239,6 +241,6 @@ def response_to_vacancy(request, vacancy_id):
     else:
         initial_data = {'vacancy': vacancy_item.vacancy_name}
         vacancy_form = VacancyRequestForm(initial=initial_data)
-        
+
     return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item,
                                                       'vacancy_form': vacancy_form})

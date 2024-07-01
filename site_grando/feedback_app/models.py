@@ -36,6 +36,6 @@ class FeedbackModel(models.Model):
     uploaded_at = models.DateTimeField(
         auto_now=True
     )
-    
+
     def __str__(self):
         return f'Отзыв {self.feedback_type} успешно добавлен'
