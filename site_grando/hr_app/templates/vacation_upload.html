@@ -10,3 +10,18 @@
         <button type="submit">Отправить заявление на согласование</button>
     </form>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        console.log("jQuery is working!");
+        // Инициализация Datepicker для полей с датами
+        $('#id_vacation_date_start').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $('#id_vacation_date_end').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
+{% endblock %}

@@ -23,6 +23,10 @@ class VacationForm(forms.ModelForm):
             # 'boss_name': 'Кому'
 
         }
+        widgets = {
+            'vacation_date_start': forms.DateInput(attrs={'id': 'id_vacation_date_start', 'type': 'text'}),
+            'vacation_date_end': forms.DateInput(attrs={'id': 'id_vacation_date_end', 'type': 'text'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(VacationForm, self).__init__(*args, **kwargs)
@@ -46,9 +50,6 @@ class VacancyForm(forms.ModelForm):
         
         
 class VacancyRequestForm(forms.ModelForm):
-<<<<<<< HEAD
-   # vacancy = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-
     class Meta:
         model = VacancyRequestModel
         fields = [

@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Корпоративный портал GRANDO{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{% static 'js/datepickerRus.js' %}"></script>
+
     <link
       rel="stylesheet"
       type="text/css"
@@ -99,5 +104,7 @@
         class="footer-logo"
       />
     </footer>
+    {% block extra_js %}
+    {% endblock %}
   </body>
 </html>
