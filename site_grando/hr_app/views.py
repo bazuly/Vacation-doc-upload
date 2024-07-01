@@ -104,6 +104,7 @@ def vacation_upload(request):
                 vac_data.vacation_date_end,
                 vacation_file_path,
                 vac_data.job.job_title,
+                vac_data.vacation_type
             )
 
             return HttpResponseRedirect(reverse('hr_app:vacation_upload_success'))
@@ -227,7 +228,7 @@ def response_to_vacancy(request, vacancy_id):
                 vacancy_data.name,
                 vacancy_item.vacancy_name,
                 vacancy_file_path,
-                vacancy_data.contact
+                vacancy_data.contact,
             )
             
             return HttpResponseRedirect(reverse('hr_app:vacancy_sending_success'))

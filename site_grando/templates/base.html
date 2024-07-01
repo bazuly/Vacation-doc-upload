@@ -2,102 +2,75 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Корпоративный портал GRANDO{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/news_style.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/news_style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+     
+
+<script src="{% static 'js/rusDatePicker.js' %}"></script>
+</head>
+<body>
     <header>
-      <h1>Корпоративный портал GRANDO</h1>
+        <h1>Корпоративный портал GRANDO</h1>
     </header>
     <nav>
-      <ul>
-        <li>
-          <a href="{% url 'index' %}"><i class="fas fa-home"></i> Главная</a>
-        </li>
-        <li>
-          <a href="{% url 'news_app:news_list' %}"
-            ><i class="fas fa-newspaper"></i> Новости</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'about_app:page_about' %}"
-            ><i class="fas fa-users"></i> Наша команда</a
-          >
-        </li>
-        {% if user.is_authenticated %}
-        <li>
-          <a href="{% url 'about_app:reference_book_list' %}"
-            ><i class="fas fa-address-book"></i> Контактная информация сотрудников</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'hr_app:vacancy_list' %}"
-            ><i class="fas fa-list"></i> Активные вакансии</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'hr_app:vacation_upload' %}"
-            ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'hr_app:vacation_list' %}"
-            ><i class="fas fa-list"></i> Список заявлений</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'users:logout' %}"
-            ><i class="fas fa-sign-out-alt"></i> Выйти</a
-          >
-        </li>
-        {% else %}
-        <li>
-          <a href="{% url 'hr_app:vacancy_list' %}"
-            ><i class="fas fa-list"></i> Активные вакансии</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'hr_app:vacation_upload' %}"
-            ><i class="fas fa-plane-departure"></i> Заявление на отпуск</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'hr_app:search_form_non_auth_user' %}"
-            ><i class="fas fa-list"></i> Статус заявления</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'users:login' %}"
-            ><i class="fas fa-sign-in-alt"></i> Войти</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'users:register' %}"
-            ><i class="fas fa-user-plus"></i> Регистрация</a
-          >
-        </li>
-        {% endif %}
-      </ul>
+        <ul>
+            <li>
+                <a href="{% url 'index' %}"><i class="fas fa-home"></i> Главная</a>
+            </li>
+            <li>
+                <a href="{% url 'news_app:news_list' %}"><i class="fas fa-newspaper"></i> Новости</a>
+            </li>
+            <li>
+                <a href="{% url 'about_app:page_about' %}"><i class="fas fa-users"></i> Наша команда</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'about_app:reference_book_list' %}"><i class="fas fa-address-book"></i> Контактная информация сотрудников</a>
+            </li>
+            <li>
+                <a href="{% url 'hr_app:vacancy_list' %}"><i class="fas fa-list"></i> Активные вакансии</a>
+            </li>
+            <li>
+                <a href="{% url 'hr_app:vacation_upload' %}"><i class="fas fa-plane-departure"></i> Заявление на отпуск</a>
+            </li>
+            <li>
+                <a href="{% url 'hr_app:vacation_list' %}"><i class="fas fa-list"></i> Список заявлений</a>
+            </li>
+            <li>
+                <a href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'hr_app:vacancy_list' %}"><i class="fas fa-list"></i> Активные вакансии</a>
+            </li>
+            <li>
+                <a href="{% url 'hr_app:vacation_upload' %}"><i class="fas fa-plane-departure"></i> Заявление на отпуск</a>
+            </li>
+            <li>
+                <a href="{% url 'hr_app:search_form_non_auth_user' %}"><i class="fas fa-list"></i> Статус заявления</a>
+            </li>
+            <li>
+                <a href="{% url 'users:login' %}"><i class="fas fa-sign-in-alt"></i> Войти</a>
+            </li>
+            <li>
+                <a href="{% url 'users:register' %}"><i class="fas fa-user-plus"></i> Регистрация</a>
+            </li>
+            {% endif %}
+        </ul>
     </nav>
     <div class="container">{% block content %} {% endblock %}</div>
+    {% block extra_js %} 
+    {% endblock %}
     <footer>
-      <img
-        src="{% static 'images/logo.png' %}"
-        alt="Грандо Логистик"
-        class="footer-logo"
-      />
+        <img src="{% static 'images/logo.png' %}" alt="Грандо Логистик" class="footer-logo" />
     </footer>
-  </body>
+</body>
 </html>

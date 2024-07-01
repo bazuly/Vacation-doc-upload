@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Форма отправки заявления на отпуск  </h1>
+    <h1>Форма отправки заявления на отпуск</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ vac_form.as_p }}
@@ -9,4 +9,18 @@
         <input type="file" name="vacation_file">
         <button type="submit">Отправить заявление на согласование</button>
     </form>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        console.log("jQuery is working!"); // проверка
+        $('#id_vacation_date_start').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        $('#id_vacation_date_end').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+    });
+</script>
 {% endblock %}

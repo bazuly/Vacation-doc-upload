@@ -71,10 +71,10 @@ class VacationModel(models.Model):
         max_length=128
     )
     # Лицо с которым согласовывается отпуск
-    boss_name = models.ForeignKey(
-        BossModel,
-        on_delete=models.CASCADE,
-    )
+    # boss_name = models.ForeignKey(
+    #     BossModel,
+    #     on_delete=models.CASCADE,
+    # )
 
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
@@ -140,6 +140,7 @@ class VacancyModel(models.Model):
 Request Vacancy Model
 """
 
+
 class VacancyRequestModel(models.Model):
     name = models.CharField(
         max_length=128,
@@ -156,7 +157,7 @@ class VacancyRequestModel(models.Model):
         max_length=128,
         blank=True
     )
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 

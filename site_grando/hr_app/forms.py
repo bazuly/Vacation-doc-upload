@@ -23,6 +23,11 @@ class VacationForm(forms.ModelForm):
             # 'boss_name': 'Кому'
 
         }
+        widgets = {
+            'vacation_date_start': forms.DateInput(attrs={'id': 'id_vacation_date_start', 'type': 'text'}),
+            'vacation_date_end': forms.DateInput(attrs={'id': 'id_vacation_date_end', 'type': 'text'}),
+        }
+
 
     def __init__(self, *args, **kwargs):
         super(VacationForm, self).__init__(*args, **kwargs)
@@ -40,26 +45,25 @@ class VacancyForm(forms.ModelForm):
         ]
         labels = {
             'vacancy_name': 'Название вакансии',
-            'salary': 'Оклад', 
+            'salary': 'Оклад',
             'content': 'Содержание'
         }
-        
-        
+
+
 class VacancyRequestForm(forms.ModelForm):
    # vacancy = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-    
+
     class Meta:
         model = VacancyRequestModel
         fields = [
             'name',
             'contact',
             'resume_upload',
-           # 'vacancy'
+            # 'vacancy'
         ]
         labels = {
             'name': 'ФИО',
             'contact': 'Контактная информация для связи с Вами',
             'resume_upload': 'Файл с Вашим резюме',
-          #  'vacancy': 'Название вакансии'
+            #  'vacancy': 'Название вакансии'
         }
-        
