@@ -12,7 +12,7 @@ class VacationForm(forms.ModelForm):
             'status_confirm',
             'job',
             'vacation_type',
-            # 'boss_name'
+
         ]
         labels = {
             'name': 'ФИО',
@@ -20,7 +20,6 @@ class VacationForm(forms.ModelForm):
             'vacation_date_end': 'Дата окончания отпуска',
             'job': 'Должность',
             'vacation_type': 'Вариант отпуска',
-            # 'boss_name': 'Кому'
 
         }
         widgets = {
@@ -44,11 +43,11 @@ class VacancyForm(forms.ModelForm):
         ]
         labels = {
             'vacancy_name': 'Название вакансии',
-            'salary': 'Оклад', 
+            'salary': 'Оклад',
             'content': 'Содержание'
         }
-        
-        
+
+
 class VacancyRequestForm(forms.ModelForm):
     class Meta:
         model = VacancyRequestModel
@@ -56,12 +55,9 @@ class VacancyRequestForm(forms.ModelForm):
             'name',
             'contact',
             'resume_upload',
-            # 'vacancy'
         ]
         labels = {
             'name': 'ФИО',
             'contact': 'Контактная информация для связи с Вами',
             'resume_upload': 'Файл с Вашим резюме',
-            #  'vacancy': 'Название вакансии'
         }
-        

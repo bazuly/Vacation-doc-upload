@@ -202,6 +202,7 @@ def vacancy_detail(request, vacancy_id):
 Response to vacancy
 """
 
+
 def response_to_vacancy(request, vacancy_id):
     vacancy_item = get_object_or_404(VacancyModel, pk=vacancy_id)
     
@@ -241,4 +242,3 @@ def response_to_vacancy(request, vacancy_id):
         
     return render(request, 'apply_for_vacancy.html', {'vacancy_item': vacancy_item,
                                                       'vacancy_form': vacancy_form})
-
