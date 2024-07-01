@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Форма отправки заявления на отпуск</h1>
-    <form method="post" enctype="multipart/form-data">
+<div class="container">
+    <h1>Отклик на вакансию: {{ vacancy_item.vacancy_name|capfirst }}</h1>
+    <form action="{% url 'hr_app:response_to_vacancy' vacancy_item.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ vac_form.as_p }}
-        <label for="{{ vac_form.vacation_files.id_for_label }}"> Фото/Скан заявления: </label>
-        <input type="file" name="vacation_file">
-        <button type="submit">Отправить заявление на согласование</button>
+        {{ vacancy_form.as_p }} 
+        <button type="submit">Отправить отклик</button>
     </form>
+    <br>
+    <br>
+    <a href="{% url 'hr_app:vacancy_list' %}" class="back-link">Вернуться к списку вакансий</a>
+</div>
 {% endblock %}
-
