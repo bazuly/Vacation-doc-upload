@@ -13,6 +13,7 @@ urlpatterns = [
     path('about/', include('about_app.urls'), name='about'),
     path('grando-main-page/', index, name='index'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('feedback/', include('feedback_app.urls'), name='feedback')
     
 ]
 

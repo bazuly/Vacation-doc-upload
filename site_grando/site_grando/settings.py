@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'users',
     'news_app',
     'about_app',
+    'feedback_app',
     
     # additional libs
     'ckeditor',
