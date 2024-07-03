@@ -1,4 +1,4 @@
-/* styles.css */
+/* main.css */
 
 body {
   font-family: Verdana, sans-serif;
@@ -25,13 +25,14 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Центрирование меню */
   gap: 10px;
 }
 
 nav ul li {
   position: relative;
   margin: 0;
+  white-space: nowrap; /* Запрещает перенос текста внутри элементов меню */
 }
 
 nav ul li a {
@@ -39,6 +40,9 @@ nav ul li a {
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 5px;
+  display: inline-block; /* Делает ссылки блочными элементами */
+  min-width: 150px; /* Установка минимальной ширины */
+  text-align: center; /* Центрирование текста внутри ссылок */
 }
 
 nav ul li a:hover {
@@ -53,14 +57,15 @@ nav ul li.has-submenu > a::after {
 nav ul li.has-submenu .submenu {
   display: none;
   position: absolute;
-  top: 0; /* изменено с top: 100% на top: 0 */
-  left: 100%; /* изменено с left: 0 на left: 100% */
+  top: 100%; /* Отображение под родительским элементом */
+  left: 0;
   background-color: #d6e9f9;
   list-style: none;
   padding: 10px;
   margin: 0;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 150px; /* Установка минимальной ширины подменю */
 }
 
 nav ul li.has-submenu .submenu li {
@@ -68,11 +73,12 @@ nav ul li.has-submenu .submenu li {
 }
 
 nav ul li.has-submenu .submenu li a {
-  display: block; /* Изменение на блочный элемент */
-  padding: 8px 20px; /* Подстройка отступов */
+  display: block;
+  padding: 8px 20px;
   white-space: nowrap;
   color: #333;
   text-decoration: none;
+  text-align: left; /* Центрирование текста внутри подменю */
 }
 
 nav ul li.has-submenu .submenu li a:hover {
@@ -216,15 +222,15 @@ i {
 }
 
 .news-content {
-  text-align: justify; /* Выравнивание текста по ширине */
-  line-height: 1.6; /* Межстрочный интервал */
-  margin-bottom: 20px; /* Отступ снизу */
+  text-align: justify;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .news-photo img {
-  max-width: 100%; /* Масштабирование изображения по ширине */
-  height: auto; /* Автоматическая высота */
-  border-radius: 5px; /* Скругленные углы */
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 /* Стили для пагинации */
@@ -235,11 +241,11 @@ i {
 
 .pagination .step-links {
   display: flex;
-  justify-content: center; /* Центрирование элементов пагинации */
+  justify-content: center;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 5px; /* Пробел между элементами */
+  gap: 5px;
 }
 
 .pagination .step-links a {
@@ -374,39 +380,4 @@ i {
   footer {
     position: static;
   }
-}
-
-
-       /* Скрываем подменю по умолчанию */
-nav ul li.has-submenu ul {
-    display: none;
-    position: absolute;
-    background-color: white; /* Белый фон для подменю */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для подменю */
-    z-index: 1000; /* Высокий z-index для размещения над другими элементами */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-}
-
-/* Отображаем подменю, когда родительский элемент имеет класс "active" */
-nav ul li.has-submenu.active ul {
-    display: block;
-}
-
-/* Стили для элементов подменю */
-nav ul li.has-submenu ul li {
-    width: 200px; /* Ширина подменю */
-}
-
-nav ul li.has-submenu ul li a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-}
-
-nav ul li.has-submenu ul li a:hover {
-    background-color: #f0f0f0;
 }

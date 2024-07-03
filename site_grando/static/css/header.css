@@ -1,0 +1,8 @@
+/* header.css */
+
+header {
+  background: linear-gradient(to bottom, #002f4b, #4a90e2);
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}

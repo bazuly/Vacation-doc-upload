@@ -1,0 +1,40 @@
+/* vacancies.css */
+
+.vacancy-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vacancy-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.vacancy-item:hover {
+  transform: scale(1.02);
+}
+
+.vacancy-content {
+  text-align: justify;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.vacancy-link {
+  display: inline-block;
+  background-color: #4a90e2;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.vacancy-link:hover {
+  background-color: #357ab8;
+}
