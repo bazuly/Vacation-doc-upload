@@ -7,11 +7,11 @@
 {% block content %}
 <div class="container">
     <h1>Отзывы и предложения</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить</button>
-    </form>
+    <form action="" method="post" enctype="multipart/form-data" class="feedback-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
     <br>
     <br>
     {% comment %} <a href="{% url 'index' %}" class="back-link">Вернуться на главную</a> {% endcomment %}

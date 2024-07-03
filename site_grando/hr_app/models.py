@@ -140,6 +140,7 @@ class VacancyModel(models.Model):
 Request Vacancy Model
 """
 
+
 class VacancyRequestModel(models.Model):
     name = models.CharField(
         max_length=128,
@@ -166,7 +167,7 @@ class VacancyRequestModel(models.Model):
         blank=True,
         verbose_name='Название вакансии, опционально'
     )
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 

@@ -13,10 +13,12 @@ urlpatterns = [
     path('about/', include('about_app.urls'), name='about'),
     path('grando-main-page/', index, name='index'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('feedback/', include('feedback_app.urls'), name='feedback')
-    
+    path('feedback/', include('feedback_app.urls'), name='feedback'),
+    # path('education', include('education_app.urls'), name='education')
+
 ]
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

@@ -231,6 +231,7 @@ def response_to_vacancy(request, vacancy_id):
                 vacancy_item.vacancy_name,
                 vacancy_file_path,
                 vacancy_data.contact,
+                vacancy_data.covering_letter
             )
 
             return HttpResponseRedirect(reverse('hr_app:vacancy_sending_success'))

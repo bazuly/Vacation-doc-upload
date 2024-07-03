@@ -54,10 +54,12 @@ class VacancyRequestForm(forms.ModelForm):
         fields = [
             'name',
             'contact',
+            'covering_letter',
             'resume_upload',
         ]
         labels = {
             'name': 'ФИО',
             'contact': 'Контактная информация для связи с Вами',
+            'covering_letter': 'Сопроводительное письмо',
             'resume_upload': 'Файл с Вашим резюме',
         }

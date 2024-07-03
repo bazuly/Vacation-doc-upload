@@ -17,14 +17,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # project apps
     'hr_app',
     'users',
     'news_app',
     'about_app',
     'feedback_app',
-    
+    # 'education_app',
+
     # additional libs
     'ckeditor',
     'ckeditor_uploader'

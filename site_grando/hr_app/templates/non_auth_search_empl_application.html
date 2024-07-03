@@ -19,10 +19,12 @@
         <ul class="vacation-list">
             {% for vacation in vac_data %}
                 <li>ФИО: {{ vacation.name | title }}
-                <li>Должность: {{ vacation.job }}</li>
-                <li>Дата начала отпуска: {{ vacation.vacation_date_start }}</li>
-                <li>Дата окончания отпуска: {{ vacation.vacation_date_end }}</li>
-                <li>Статус согласования: {{ vacation.status_confirm }}</li>
+                <br>Должность: {{ vacation.job | title }}
+                <br>Дата начала отпуска: {{ vacation.vacation_date_start }}
+                <br>Дата окончания отпуска: {{ vacation.vacation_date_end }}
+                <br>Статус согласования: {{ vacation.status_confirm }}
+                <br>Заявление отравлено: {{ vacation.uploaded_at }}
+                <br>
                 <br>
             {% endfor %}
         </ul>
