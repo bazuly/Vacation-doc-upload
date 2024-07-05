@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'news_app',
     'about_app',
     'feedback_app',
-    # 'education_app',
+    'education_app',
 
     # additional libs
     'ckeditor',
@@ -118,6 +118,7 @@ DEFAULT_USER_IMAGE = 'static/images/default-image.png'
 
 """ EMAIL CONFIG """
 
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_HOST = "smtp.yandex.ru"
@@ -140,6 +141,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'extraPlugins': ','.join([
             'uploadimage',
+            'html5video',  # сторонний модуль
         ]),
         'height': 300,
         'width': 1200
