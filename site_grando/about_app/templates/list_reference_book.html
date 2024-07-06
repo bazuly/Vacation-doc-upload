@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Список контактной информации</h1>
+    <h1 class="centered-heading news-heading">Список контактной информации</h1>
 
     <form method="get" action="{% url 'about_app:search_data_reference_book' %}">
         <input type="text" name="q" value="{{ query }}" placeholder="Введите текст для поиска" required>

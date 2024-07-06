@@ -26,7 +26,7 @@ def reference_book_list(request):
         reference_book_data = paginator.page(1)
     except EmptyPage:
         reference_book_data = paginator.page(paginator.num_pages)
-    
+
     context = {
         'reference_book_data': reference_book_data
     }

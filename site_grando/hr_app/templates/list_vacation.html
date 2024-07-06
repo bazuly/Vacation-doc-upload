@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <h1>Список заявлений сотрудников</h1>
+    <h1 class="centered-heading news-heading">Список заявлений сотрудников</h1>
     
     <form method="get" action="{% url 'hr_app:search_vac_data' %}">
         <input type="text" name="q" value="{{ query }}" placeholder="Введите имя для поиска" required>
