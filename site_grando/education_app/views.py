@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from .models import EducationModel
+from site_grando.handlers.pagination_handler import paginate_queryset
 
 
 def education_content(request):
     education_data = EducationModel.objects.all()
+    education_paginate_data = paginate_queryset(education_data, request)
     context = {
-        'education_data': education_data
+        'education_data': education_paginate_data
     }
     return render(request, 'education_list.html', context)
 

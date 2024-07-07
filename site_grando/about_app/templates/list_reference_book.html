@@ -12,7 +12,7 @@
         <ul>
             {% for reference in reference_book_data %}
                 <li>
-                    <strong>Название:</strong> {{ reference.name | title }}
+                    <strong>Имя:</strong> {{ reference.name | title }}
                     <br> <strong>Должность:</strong> {{ reference.job | capfirst}}
                     <br> <strong>Добавочный номер:</strong> {{ reference.additional_number }}
                     <br> <strong>Место работы:</strong> {{ reference.work_place | title }}

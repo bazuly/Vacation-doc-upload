@@ -74,6 +74,7 @@ class VacationModel(models.Model):
     boss_name = models.ForeignKey(
         BossModel,
         on_delete=models.CASCADE,
+        null=True
     )
 
     def save(self, *args, **kwargs):

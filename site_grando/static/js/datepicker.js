@@ -1,19 +1,4 @@
-{% extends 'base.html' %}
-
-{% block content %}
-       <h1 class="centered-heading news-heading">Форма отправки заявления на отпуск</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ vac_form.as_p }}
-        <label for="{{ vac_form.vacation_files.id_for_label }}"> Фото/Скан заявления: </label>
-        <input type="file" name="vacation_file">
-        <button type="submit">Отправить заявление на согласование</button>
-    </form>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    $(document).ready(function() {
+$(document).ready(function() {
         // Проверка jQuery
         console.log("jQuery is working!");
 
@@ -38,6 +23,7 @@
                 );
                 validateDates();
             }
+            
         });
 
         function validateDates() {
@@ -45,7 +31,7 @@
             var endDate = $('#id_vacation_date_end').val();
 
             if (startDate && endDate) {
-                if (new Date(startDate) > new Date(endDate)) {
+                if (new Date(startDate) >= new Date(endDate)) {
                     alert("Дата начала отпуска не может быть позже даты окончания");
                     $('#id_vacation_date_start').val('');
                     $('#id_vacation_date_end').val('');
@@ -53,5 +39,3 @@
             }
         }
     });
-</script>
-{% endblock %}
