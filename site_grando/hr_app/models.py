@@ -71,11 +71,11 @@ class VacationModel(models.Model):
         max_length=128
     )
     # Лицо с которым согласовывается отпуск
-    boss_name = models.ForeignKey(
-        BossModel,
-        on_delete=models.CASCADE,
-        null=True
-    )
+    # boss_name = models.ForeignKey(
+    #     BossModel,
+    #     on_delete=models.CASCADE,
+    #     null=True
+    # )
 
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
