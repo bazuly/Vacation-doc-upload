@@ -132,7 +132,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 LOGIN_REDIRECT_URL = '/vacation/vacation_upload/'
-
+LOGIN_URL = '/login/'
 
 """ CKEDITOR CONFIG """
 
