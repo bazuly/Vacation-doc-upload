@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <h1>{{ vacancy_item.vacancy_name|capfirst }}</h1>
+    <h1 class="centered-heading news-heading">{{ vacancy_item.vacancy_name|capfirst }}</h1>
     <h2>Оклад: {{ vacancy_item.salary|safe }}</h2>
     <div class="vacancy-content">
         {{ vacancy_item.content|safe }}

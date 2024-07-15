@@ -20,7 +20,7 @@ class LoginUserForm(AuthenticationForm):
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Логин',
                                widget=forms.TextInput(attrs={'class': 'form-input'}))
-    password1 = forms.CharField(label='Пароль',
+    password1 = forms.CharField(label='Пароль, больше 8-ти символов*',
                                 widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     password2 = forms.CharField(label='Повтор пароля',
                                 widget=forms.PasswordInput(attrs={'class': 'form-input'}))
@@ -30,7 +30,7 @@ class RegisterUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = [
-            'username', 
+            'username',
             'email',
             'first_name',
             'last_name',

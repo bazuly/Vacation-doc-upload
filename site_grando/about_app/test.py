@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.core.files.uploadedfile import SimpleUploadedFile
 from .models import JobModel, ReferenceBookModel
 
 from django.contrib.auth.models import User
