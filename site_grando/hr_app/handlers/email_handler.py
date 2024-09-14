@@ -12,8 +12,7 @@ def vacation_email_hr_handler(name, vacation_date_start, vacation_date_end, vaca
     hr_email_instance = HrEmailModel.objects.all()
     email_list = [email.email for email in hr_email_instance]
     subject = f'Заявление на отпуск от {name}, должность: {job_title}'
-    message = f'Добрый день. Прошу предоставить отпуск в период с {
-        vacation_date_start} по {vacation_date_end}'
+    message = f'Добрый день. Прошу предоставить отпуск в период с {vacation_date_start} по {vacation_date_end}'
     email = EmailMessage(subject, message, to=email_list)
 
     if vacation_file_path is not None and os.path.exists(vacation_file_path):
